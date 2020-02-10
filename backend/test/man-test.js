@@ -10,31 +10,31 @@ const URL_BASE = "http://localhost:3001";
 describe('Avaliação do tipo MAN', () => {
     it('Avaliação MAN com dados válidos',(done) => {
         const man = {
-            cod_pac: '',
+            cod_pac: '4',
             av_global:{
-                vive_propria_casa:'',
-                qtd_medicamentos: '',
-                escaras_lesoes_pele: '',
-                qtd_refeicao_dia: '',
-                consumo_leite_derivados: '',
-                consumo_leguminosas_ovos: '',
-                consumo_proteina: '',
-                somatorio_consumo: '',
-                consumo_frutas_hortalicas: '',
-                consumo_liquidos: '',
-                modo_alimentacao: '',
-                problema_nutricional: '',
-                comparacao_faixa_etaria: '',
-                perimetro_braquial: '',
-                perimetro_perna: ''
+                vive_propria_casa:'1',
+                qtd_medicamentos: '0',
+                escaras_lesoes_pele: '1',
+                qtd_refeicao_dia: '2',
+                consumo_leite_derivados: 'S',
+                consumo_leguminosas_ovos: 'S',
+                consumo_proteina: 'S',
+                somatorio_consumo: '1',
+                consumo_frutas_hortalicas: '0',
+                consumo_liquidos: '0',
+                modo_alimentacao: '1',
+                problema_nutricional: '2',
+                comparacao_faixa_etaria: '1',
+                perimetro_braquial: '0.5',
+                perimetro_perna: '1'
             },
             triagem:{
-                diminuicao_ingestao_alimentar: '',
-                perda_peso: '',
-                mobilidade:'',
-                stress_psicologico: '',
-                doenca_neuropsic: '',
-                imc: ''
+                diminuicao_ingestao_alimentar: '1',
+                perda_peso: '2',
+                mobilidade:'2',
+                stress_psicologico: '2',
+                doenca_neuropsic: '2',
+                imc: '2'
             }
         }
         
@@ -50,31 +50,31 @@ describe('Avaliação do tipo MAN', () => {
     
     it('Avaliação MAN com dados da triagem em branco',(done) => {
         const man = {
-            cod_pac: '',
+            cod_pac: '4',
             av_global:{
-                vive_propria_casa:'',
-                qtd_medicamentos: '',
-                escaras_lesoes_pele: '',
-                qtd_refeicao_dia: '',
-                consumo_leite_derivados: '',
-                consumo_leguminosas_ovos: '',
-                consumo_proteina: '',
-                somatorio_consumo: '',
-                consumo_frutas_hortalicas: '',
-                consumo_liquidos: '',
-                modo_alimentacao: '',
-                problema_nutricional: '',
-                comparacao_faixa_etaria: '',
-                perimetro_braquial: '',
-                perimetro_perna: ''
+                vive_propria_casa:'1',
+                qtd_medicamentos: '0',
+                escaras_lesoes_pele: '1',
+                qtd_refeicao_dia: '2',
+                consumo_leite_derivados: 'S',
+                consumo_leguminosas_ovos: 'S',
+                consumo_proteina: 'S',
+                somatorio_consumo: '1',
+                consumo_frutas_hortalicas: '0',
+                consumo_liquidos: '0',
+                modo_alimentacao: '1',
+                problema_nutricional: '2',
+                comparacao_faixa_etaria: '1',
+                perimetro_braquial: '0.5',
+                perimetro_perna: '1'
             },
             triagem:{
                 diminuicao_ingestao_alimentar: '',
-                perda_peso: '',
-                mobilidade:'',
-                stress_psicologico: '',
-                doenca_neuropsic: '',
-                imc: ''
+                perda_peso: '2',
+                mobilidade:'2',
+                stress_psicologico: '2',
+                doenca_neuropsic: '2',
+                imc: '2'
             }
         }
         
@@ -90,31 +90,31 @@ describe('Avaliação do tipo MAN', () => {
     
     it('Avaliação MAN com dados da avaliação global em branco',(done) => {
         const man = {
-            cod_pac: '',
+            cod_pac: '4',
             av_global:{
                 vive_propria_casa:'',
-                qtd_medicamentos: '',
-                escaras_lesoes_pele: '',
-                qtd_refeicao_dia: '',
-                consumo_leite_derivados: '',
-                consumo_leguminosas_ovos: '',
-                consumo_proteina: '',
-                somatorio_consumo: '',
-                consumo_frutas_hortalicas: '',
-                consumo_liquidos: '',
-                modo_alimentacao: '',
-                problema_nutricional: '',
-                comparacao_faixa_etaria: '',
-                perimetro_braquial: '',
-                perimetro_perna: ''
+                qtd_medicamentos: '0',
+                escaras_lesoes_pele: '1',
+                qtd_refeicao_dia: '2',
+                consumo_leite_derivados: 'S',
+                consumo_leguminosas_ovos: 'S',
+                consumo_proteina: 'S',
+                somatorio_consumo: '1',
+                consumo_frutas_hortalicas: '0',
+                consumo_liquidos: '0',
+                modo_alimentacao: '1',
+                problema_nutricional: '2',
+                comparacao_faixa_etaria: '1',
+                perimetro_braquial: '0.5',
+                perimetro_perna: '1'
             },
             triagem:{
-                diminuicao_ingestao_alimentar: '',
-                perda_peso: '',
-                mobilidade:'',
-                stress_psicologico: '',
-                doenca_neuropsic: '',
-                imc: ''
+                diminuicao_ingestao_alimentar: '1',
+                perda_peso: '2',
+                mobilidade:'2',
+                stress_psicologico: '2',
+                doenca_neuropsic: '2',
+                imc: '2'
             }
         }
         
@@ -132,29 +132,29 @@ describe('Avaliação do tipo MAN', () => {
         const man = {
             cod_pac: '',
             av_global:{
-                vive_propria_casa:'',
-                qtd_medicamentos: '',
-                escaras_lesoes_pele: '',
-                qtd_refeicao_dia: '',
-                consumo_leite_derivados: '',
-                consumo_leguminosas_ovos: '',
-                consumo_proteina: '',
-                somatorio_consumo: '',
-                consumo_frutas_hortalicas: '',
-                consumo_liquidos: '',
-                modo_alimentacao: '',
-                problema_nutricional: '',
-                comparacao_faixa_etaria: '',
-                perimetro_braquial: '',
-                perimetro_perna: ''
+                vive_propria_casa:'1',
+                qtd_medicamentos: '0',
+                escaras_lesoes_pele: '1',
+                qtd_refeicao_dia: '2',
+                consumo_leite_derivados: 'S',
+                consumo_leguminosas_ovos: 'S',
+                consumo_proteina: 'S',
+                somatorio_consumo: '1',
+                consumo_frutas_hortalicas: '0',
+                consumo_liquidos: '0',
+                modo_alimentacao: '1',
+                problema_nutricional: '2',
+                comparacao_faixa_etaria: '1',
+                perimetro_braquial: '0.5',
+                perimetro_perna: '1'
             },
             triagem:{
-                diminuicao_ingestao_alimentar: '',
-                perda_peso: '',
-                mobilidade:'',
-                stress_psicologico: '',
-                doenca_neuropsic: '',
-                imc: ''
+                diminuicao_ingestao_alimentar: '1',
+                perda_peso: '2',
+                mobilidade:'2',
+                stress_psicologico: '2',
+                doenca_neuropsic: '2',
+                imc: '2'
             }
         }
         

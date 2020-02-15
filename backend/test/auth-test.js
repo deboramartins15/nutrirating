@@ -13,7 +13,7 @@ describe('Login c/ profissional',() => {
     
     it('Logar com profissional cadastrado',(done) => {
         const profissional = {
-            email: 'profissional_test@gmail.com',
+            email: 'profissional_test6.646757917205573@gmail.com',
             senha: '1234de78'
         }
 

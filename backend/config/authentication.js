@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+//const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const passportJwt = require("passport-jwt");
 const { Strategy, ExtractJwt } = passportJwt;
@@ -13,10 +13,10 @@ module.exports = app => {
 
   const strategy = new Strategy(params, (payload, done) => {
     app
-      .db("users")
-      .where({ id: payload.id })
+      .db("profissional")
+      .where({ cod_profissional: payload.id })
       .first()
-      .then(user => done(null, user ? { ...payload } : false))
+      .then(profissional => done(null, profissional ? { ...payload } : false))
       .catch(err => done(err, false));
   });
 

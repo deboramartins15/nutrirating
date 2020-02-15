@@ -1,5 +1,5 @@
 const { authSecret } = require("../.env");
-const jwt = require("jsonwebtoken");
+const jwt = require("jwt-simple");
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 
@@ -32,12 +32,12 @@ module.exports = app => {
         req.body.senha,
         profissional.senha
       );
-      if (!isMatch) return res.status(400).send({ error: MSG03 });
+      if (!isMatch) return res.status(401).send({ error: MSG03 });
 
       const now = Math.floor(Date.now() / 1000);
 
       const payload = {
-        id: profissional.id,
+        id: profissional.cod_profissional,
         nome: profissional.nome,
         emai: profissional.email,
         iat: now,
@@ -46,12 +46,27 @@ module.exports = app => {
 
       return res.json({
         ...payload,
-        token: jwt.sign(payload, authSecret)
+        token: jwt.encode(payload, authSecret)
       });
     } catch (err) {
       console.log(err);
     }
   };
+
+  const validateToken = async(req,res) => {
+    const userData = req.body || null
+    try {
+      if(userData){
+        const token = jwt.decode(userData.token,authSecret)
+        if(new Date(token.exp * 1000) > new Date()){
+          return res.send(true)
+        }
+      }
+    } catch (error) {
+      console.log('problema com o token')
+    }
+    res.send(false)
+  }
 
   const recuperaSenha = async (req, res) => {
     try {
@@ -100,5 +115,5 @@ module.exports = app => {
     }
   };
 
-  return { logon, recuperaSenha };
+  return { logon,validateToken, recuperaSenha };
 };

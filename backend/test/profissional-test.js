@@ -6,6 +6,7 @@ chai.use(chaiHttp);
 chai.use(require("chai-things"));
 
 const URL_BASE = "http://localhost:3001";
+let token = "";
 
 describe("Sign up profissional", () => {
   it("Cadastrar um profissional com dados válidos", done => {
@@ -136,6 +137,22 @@ describe("Sign up profissional", () => {
 });
 
 describe("Update Profissional", () => {
+  beforeEach("Autenticação", function(done) {
+    const profissional = {
+      email: "profissional_test6.646757917205573@gmail.com",
+      senha: "1234de78"
+    };
+
+    chai
+      .request(URL_BASE)
+      .post("/login")
+      .send(profissional)
+      .end((err, res) => {
+        token = res.body.token;
+        done();
+      });
+  });
+
   it("Alteração de profissional com dados válidos", done => {
     const profissional = {
       id: 3,
@@ -156,6 +173,7 @@ describe("Update Profissional", () => {
     chai
       .request(URL_BASE)
       .put("/profissional/" + profissional.id)
+      .set("Authorization", "Bearer " + token)
       .send(profissional)
       .end((err, res) => {
         res.should.have.status(200);
@@ -186,6 +204,7 @@ describe("Update Profissional", () => {
     chai
       .request(URL_BASE)
       .put("/profissional/" + profissional.id)
+      .set("Authorization", "Bearer " + token)
       .send(profissional)
       .end((err, res) => {
         res.should.have.status(400);
@@ -216,6 +235,7 @@ describe("Update Profissional", () => {
     chai
       .request(URL_BASE)
       .put("/profissional/" + profissional.id)
+      .set("Authorization", "Bearer " + token)
       .send(profissional)
       .end((err, res) => {
         res.should.have.status(400);
@@ -246,6 +266,7 @@ describe("Update Profissional", () => {
     chai
       .request(URL_BASE)
       .put("/profissional/" + profissional.id)
+      .set("Authorization", "Bearer " + token)
       .send(profissional)
       .end((err, res) => {
         res.should.have.status(400);
@@ -258,6 +279,22 @@ describe("Update Profissional", () => {
 });
 
 describe("Delete profissional", () => {
+  beforeEach("Autenticação", function(done) {
+    const profissional = {
+      email: "profissional_test6.646757917205573@gmail.com",
+      senha: "1234de78"
+    };
+
+    chai
+      .request(URL_BASE)
+      .post("/login")
+      .send(profissional)
+      .end((err, res) => {
+        token = res.body.token;
+        done();
+      });
+  });
+
   it("Exclusão de profissional sem pacientes", done => {
     const profissional = {
       id: 3
@@ -266,6 +303,7 @@ describe("Delete profissional", () => {
     chai
       .request(URL_BASE)
       .delete("/profissional/" + profissional.id)
+      .set("Authorization", "Bearer " + token)
       .send(profissional)
       .end((err, res) => {
         res.should.have.status(200);
@@ -282,6 +320,7 @@ describe("Delete profissional", () => {
     chai
       .request(URL_BASE)
       .delete("/profissional/" + profissional.id)
+      .set("Authorization", "Bearer " + token)
       .send(profissional)
       .end((err, res) => {
         res.should.have.status(400);

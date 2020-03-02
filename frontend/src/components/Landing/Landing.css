@@ -2,6 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Merriweather;
+}
+
+.above{
+    position: absolute;
+    z-index: 9999;
 }
 
 .container{
@@ -30,10 +36,7 @@
 
 .header{
     min-width: 100%;
-    min-height: auto;
-
-    position: absolute;
-    z-index: 9999;
+    min-height: auto;    
 
     display: flex;
     flex-direction: row;
@@ -43,7 +46,7 @@
 
 .header img{
     margin-top: 15px;
-    margin-left: 710px;
+    margin-left: 40%;
 }
 
 .btnEntrar{
@@ -58,7 +61,7 @@
 
     margin-right: 20px;
 
-    font-family: Merriweather;
+    /* font-family: Merriweather; */
     font-style: normal;
     font-weight: normal;
     font-size: 21px;
@@ -72,4 +75,84 @@
     background: rgb(235, 57, 34);
     /* background-color: transparent;
     border: 2px solid #E85E4C; */
+}
+
+.content{
+    min-width: 100%;
+    min-height: auto;  
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center; 
+
+    margin-top: 25%;
+    margin-left: 24%;
+}
+
+/* .content div{
+    min-width: 100%;
+    min-height: auto;  
+} */
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* margin: 10px; */
+}
+
+#title-1{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 67px;
+    line-height: 110%;
+    
+    text-align: center;
+    letter-spacing: 0.15em;
+
+    color: #666666;
+}
+
+#title-2{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 67px;
+    line-height: 110%;
+    
+    text-align: center;
+    letter-spacing: 0.15em;
+    
+    color: #CDD3DB;
+}
+
+.subtitle{    
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 120%;
+
+    text-align: center;
+
+    color: #666666;                                         
+}
+
+.btnComece{
+    width: 268px;
+    height: 57px;
+
+    background: #553463;
+    border-radius: 40px;
+    border: none;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 120%;    
+
+    text-align: center;
+
+    color: #CDD3DB;
+    margin-top: 10px;
 }

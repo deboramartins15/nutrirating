@@ -9,11 +9,15 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import store from "./store";
 
+import Login from './components/Login/Login'
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
         <Route path="/" exact={true} component={App} />
+        <Route path="/login" component={Login}/>
+        <Route path="/signup" component={Login}/>
       </Switch>
     </BrowserRouter>
   </Provider>,

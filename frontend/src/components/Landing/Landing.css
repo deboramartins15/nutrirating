@@ -10,137 +10,73 @@
     z-index: 9999;
 }
 
+a:hover, .btnEntrar:hover{
+    text-decoration: none;
+}
+
 .container{
     margin:0;
     padding: 0;
+    top: 0;
+    left: 0;
     
-    min-width: 100%;
-    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+
+    height: 810px;
 
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;  
-    /* align-items: center;  */
-    flex:1;
+    flex-direction: column;
 
     background: #E0E0E0;
 }
 
-.container img {
-    max-width: 64.5%;
+.img_desk,.logo_desk, .btnEntrar, .title, .subtitle {
+    display: none;
+}
+
+.img_mobile {
+    max-width: 100%;
     max-height: 100%;
     
-    width: auto;
-    height: auto; 
+    width: 100%;
+    height: 90%; 
 }
 
 .header{
     min-width: 100%;
-    min-height: auto;    
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    min-height: auto; 
+    
+    top: 0;
+    left: 0;
 }
 
 .header img{
-    margin-top: 15px;
-    margin-left: 40%;
-}
-
-.btnEntrar{
-    width: 180px;
-    height: 47px;
-    left: 0px;
-    top: 0px;
-
-    background: #E85E4C;
-    border-radius: 40px;
-    border: 0;
-
-    margin-right: 20px;
-
-    /* font-family: Merriweather; */
-    font-style: normal;
-    font-weight: normal;
-    font-size: 21px;
-    line-height: 120%;    
-
-    text-align: center;
-    color: #CDD3DB;
-}
-
-.btnEntrar:hover{
-    background: rgb(235, 57, 34);
-    /* background-color: transparent;
-    border: 2px solid #E85E4C; */
+    margin-top: 10%;
+    margin-left: 30%;
 }
 
 .content{
-    min-width: 100%;
-    min-height: auto;  
+    width: 100%;
+    height: auto;  
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 80%;
+}
+
+.buttons{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center; 
-
-    margin-top: 25%;
-    margin-left: 24%;
 }
 
-/* .content div{
-    min-width: 100%;
-    min-height: auto;  
-} */
-
-.title{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    /* margin: 10px; */
-}
-
-#title-1{
-    font-style: normal;
-    font-weight: 300;
-    font-size: 67px;
-    line-height: 110%;
-    
-    text-align: center;
-    letter-spacing: 0.15em;
-
-    color: #666666;
-}
-
-#title-2{
-    font-style: normal;
-    font-weight: normal;
-    font-size: 67px;
-    line-height: 110%;
-    
-    text-align: center;
-    letter-spacing: 0.15em;
-    
-    color: #CDD3DB;
-}
-
-.subtitle{    
-    font-style: normal;
-    font-weight: normal;
-    font-size: 28px;
-    line-height: 120%;
-
-    text-align: center;
-
-    color: #666666;                                         
-}
-
-.btnComece{
-    width: 268px;
-    height: 57px;
+.btnSecondary{
+    width: 216px;
+    height: 49px;
+    left: 0px;
+    top: 0px;
 
     background: #553463;
     border-radius: 40px;
@@ -148,11 +84,155 @@
 
     font-style: normal;
     font-weight: normal;
-    font-size: 21px;
-    line-height: 120%;    
+    font-size: 18px;
+    line-height: 140%;   
 
     text-align: center;
 
     color: #CDD3DB;
     margin-top: 10px;
 }
+
+.btnSecondary:hover{
+    border: 1px solid #CDD3DB;
+}
+
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .container{
+        margin:0;
+        padding: 0;
+        top: 0;
+        left: 0;
+        
+        max-width: 100%;
+        max-height: 100%;
+    
+        height: 100vh;
+    
+        display: flex;
+        flex-direction: column;    
+    }
+    
+    .img_desk{
+        display: flex;
+        max-width: 100%;
+        max-height: 100%;
+        
+        width: 80%;
+        height: 100%;
+
+        margin-left: 20%;
+    }
+
+    .header{
+        width: 100%;
+        height: auto;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header img{
+        margin-top: 10px;
+        margin-left: 35%;
+    }
+
+    .logo_desk{
+        display: flex;        
+    }
+
+    .btnEntrar{
+        display: block;
+        width: 180px;
+        height: 47px;
+        left: 0px;
+        top: 0px;
+    
+        background: #E85E4C;
+        border-radius: 40px;
+        border: 0;
+    
+        margin-right: 20px;
+    
+        font-style: normal;
+        font-weight: normal;
+        font-size: 21px;
+        line-height: 120%;    
+    
+        text-align: center;
+        color: #CDD3DB;
+    }
+
+    .btnEntrar:hover{
+        background: rgb(235, 57, 34);
+    }
+
+    .content{
+        width: 100%;
+        height: auto;  
+    
+        display: flex;
+        flex-direction: column;  
+        align-items: flex-start;            
+    
+        margin-top: 28%;        
+    }
+
+    .title{
+        display: flex; 
+        margin-left: 22%;        
+    }
+    
+    #title-1{
+        font-style: normal;
+        font-weight: 300;
+        font-size: 67px;
+        line-height: 110%;
+        
+        text-align: center;
+        letter-spacing: 0.15em;
+    
+        color: #666666;        
+    }
+    
+    #title-2{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 67px;
+        line-height: 110%;
+        
+        text-align: center;
+        letter-spacing: 0.15em;        
+        
+        color: #CDD3DB;
+    }
+    
+    .subtitle{
+        display: flex;    
+        font-style: normal;
+        font-weight: normal;
+        font-size: 28px;
+        line-height: 120%;
+    
+        text-align: center;
+    
+        color: #666666; 
+        margin-left: 22%;                                        
+    }
+
+    .buttons{
+        margin-left: 22%;
+        margin-top: 16px;
+    }
+
+    .btnSecondary{
+        font-size: 21px;
+        line-height: 120%;
+    }
+
+    .btnEntrarSec, .logo_mobile, .img_mobile{
+        display: none;
+    }
+  }

@@ -134,14 +134,14 @@ a:hover, .btnEntrar:hover{
         align-items: center;
     }
 
+    /* .logo_desk{
+        display: flex;                
+    } */
+
     .header img{
         margin-top: 10px;
         margin-left: 35%;
-    }
-
-    .logo_desk{
-        display: flex;        
-    }
+    }    
 
     .btnEntrar{
         display: block;
@@ -163,6 +163,8 @@ a:hover, .btnEntrar:hover{
     
         text-align: center;
         color: #CDD3DB;
+
+        /* margin-left: 250px; */
     }
 
     .btnEntrar:hover{
@@ -182,7 +184,7 @@ a:hover, .btnEntrar:hover{
 
     .title{
         display: flex; 
-        margin-left: 22%;        
+        margin-left: 24%;        
     }
     
     #title-1{
@@ -219,11 +221,11 @@ a:hover, .btnEntrar:hover{
         text-align: center;
     
         color: #666666; 
-        margin-left: 22%;                                        
+        margin-left: 24%;                                        
     }
 
     .buttons{
-        margin-left: 22%;
+        margin-left: 24%;
         margin-top: 16px;
     }
 
@@ -236,3 +238,4 @@ a:hover, .btnEntrar:hover{
         display: none;
     }
   }
+

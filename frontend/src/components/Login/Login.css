@@ -10,21 +10,21 @@
   z-index: 9999;
 }
 
-::-webkit-input-placeholder {
+.inputs::-webkit-input-placeholder {
   color: #666666;
 }
 
-:-moz-placeholder {
+.inputs:-moz-placeholder {
   /* Firefox 18- */
   color: #666666;
 }
 
-::-moz-placeholder {
+.inputs::-moz-placeholder {
   /* Firefox 19+ */
   color: #666666;
 }
 
-:-ms-input-placeholder {
+.inputs:-ms-input-placeholder {
   color: #666666;
 }
 
@@ -236,5 +236,9 @@ a:nth-child(1) {
   .forgot_pass {
     color: #553463;
     margin-top: 16px;
+  }
+
+  .alert{
+    margin-left: 45%;
   }
 }

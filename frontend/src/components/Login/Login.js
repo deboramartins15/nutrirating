@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 
 import "./Login.css";
 
@@ -13,13 +13,54 @@ import Api from "../../service/api";
 
 function Login(props) {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [senha, setSenha] = useState("");
+  const [conf_senha, setConfSenha] = useState("");
+  const [error, setError] = useState("");
 
   const dispatch = useDispatch();
 
-  async function logon(history) {}
+  function logonAction(u) {
+    return { type: "LOGIN", u };
+  }
 
-  async function signin(history) {}
+  async function logon(history) {
+    try{
+      const response = await Api.post("/login",{
+        email,
+        senha
+      })
+
+      const user = {
+        id: response.data.id,
+        name: response.data.name,
+        email: response.data.email
+      }
+
+      const { token } = response.data;
+
+      await localStorage.setItem("@nutrirating:token", token)
+      await dispatch(logonAction(user))
+      history.push("/home")
+
+    }catch(response){
+      setError(response.data.error)
+    }
+  }
+
+  async function signin(history) {
+    try{      
+      await Api.post("/signup",{
+        email,
+        senha,
+        conf_senha
+      })
+      
+      logon(history)
+
+    }catch(response){      
+      setError(response.data.error)
+    }
+  }
 
   return (
     <div className="container">
@@ -29,15 +70,29 @@ function Login(props) {
         <img className="logo_mobile" src={logo_mobile} alt="logo_mobile"></img>
         <img className="logo_desk" src={logo_desk} alt="logo_"></img>
       </div>
+      {!!error && <span className="alert alert-danger above" role="alert">{error}</span>}
       <div className="form_login above">
         <span className="title_login">Já possui conta? Entre já</span>
-        <input className="inputs" type="text" placeholder="Email" onChange={t => setEmail(t.target.value)}></input>
-        <input className="inputs" type="password" placeholder="Senha" onChange={t => setPassword(t.target.value)}></input>
+        <input
+          className="inputs"
+          type="text"
+          placeholder="Email"
+          onChange={t => setEmail(t.target.value)}
+        ></input>
+        <input
+          className="inputs"
+          type="password"
+          placeholder="Senha"
+          onChange={t => setSenha(t.target.value)}
+        ></input>
         <div className="button_login">
-          <Link to="/login">
-            {" "}
-            <button className="btnSecondary">Entrar</button>{" "}
-          </Link>
+          <Route
+            render={({ history }) => (
+              <button className="btnSecondary" onClick={() => logon(history)}>
+                Entrar
+              </button>
+            )}
+          />
         </div>
         <Link to="/forgot-pass">
           {" "}
@@ -58,13 +113,22 @@ function Login(props) {
           className="inputs_signin"
           type="password"
           placeholder="Senha"
-          onChange={t => setPassword(t.target.value)}
+          onChange={t => setSenha(t.target.value)}
+        ></input>
+        <input
+          className="inputs_signin"
+          type="password"
+          placeholder="Confirmação senha"
+          onChange={t => setConfSenha(t.target.value)}
         ></input>
         <div className="button_signin">
-          <Link to="/signup">
-            {" "}
-            <button className="btnPrimary">Comece já</button>{" "}
-          </Link>
+          <Route
+            render={({ history }) => (
+              <button className="btnPrimary" onClick={() => signin(history)}>
+                Comece já
+              </button>
+            )}
+          />
         </div>
       </div>
     </div>

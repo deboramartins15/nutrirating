@@ -36,10 +36,17 @@ module.exports = app => {
     }
 
     try {
+      // if (
+      //   !profissional.nome ||
+      //   !profissional.email ||
+      //   !profissional.num_conselho ||
+      //   !profissional.senha ||
+      //   !profissional.confirmacao_senha
+      // )
+      //   return res.status(400).send({ error: MSG01 });
+
       if (
-        !profissional.nome ||
-        !profissional.email ||
-        !profissional.num_conselho ||
+        !profissional.email ||        
         !profissional.senha ||
         !profissional.confirmacao_senha
       )

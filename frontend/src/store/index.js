@@ -1,23 +1,8 @@
 import { createStore } from 'redux'
 
-import { LOGIN } from '../actions/actionTypes';
+import { Reducers } from '../reducers'
 
-const initialState = {
-    profissional: {}
-};
-
-const LoginReducer = (state = initialState, action) => {
-    switch(action.type){
-        case LOGIN:
-            return{
-                ...state,profissional: action.profissional
-            }
-        default:
-            return state
-    }
-}
-
-const store = createStore(LoginReducer)
+const store = createStore(Reducers)
 
 export default store;
 

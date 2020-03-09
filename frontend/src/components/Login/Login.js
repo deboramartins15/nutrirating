@@ -43,7 +43,8 @@ function Login(props) {
       history.push("/home")
 
     }catch(response){
-      setError(response.data.error)
+      if (response.data)
+        setError(response.data.error)
     }
   }
 
@@ -58,7 +59,8 @@ function Login(props) {
       logon(history)
 
     }catch(response){      
-      setError(response.data.error)
+      if(response.data)
+        setError(response.data.error)
     }
   }
 

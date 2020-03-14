@@ -14,62 +14,30 @@ a:hover, .btnEntrar:hover{
     text-decoration: none;
 }
 
-.container{
-    margin:0;
-    padding: 0;
-    top: 0;
-    left: 0;
-    
-    max-width: 100%;
-    max-height: 100%;
+.btnEntrar{
+    display: block;
+    width: 150px;
+    height: 47px;
+    left: 0px;
+    top: 0px;
 
-    height: 810px;
+    background: #E85E4C;
+    border-radius: 40px;
+    border: 0;
 
-    display: flex;
-    flex-direction: column;
+    margin-right: 10px;
 
-    background: #E0E0E0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 120%;    
+
+    text-align: center;
+    color: #CDD3DB;        
 }
 
-.img_desk,.logo_desk, .btnEntrar, .title, .subtitle {
-    display: none;
-}
-
-.img_mobile {
-    max-width: 100%;
-    max-height: 100%;
-    
-    width: 100%;
-    height: 90%; 
-}
-
-.header{
-    min-width: 100%;
-    min-height: auto; 
-    
-    top: 0;
-    left: 0;
-}
-
-.header img{
-    margin-top: 10%;
-    margin-left: 30%;
-}
-
-.content{
-    width: 100%;
-    height: auto;  
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-top: 80%;
-}
-
-.buttons{
-    display: flex;
-    flex-direction: column;
+.btnEntrar:hover{
+    background: rgb(235, 57, 34);
 }
 
 .btnSecondary{
@@ -97,145 +65,179 @@ a:hover, .btnEntrar:hover{
     border: 1px solid #CDD3DB;
 }
 
-@media only screen and (min-width: 768px) {
-    /* For desktop: */
-    .container{
-        margin:0;
-        padding: 0;
-        top: 0;
-        left: 0;
-        
-        max-width: 100%;
-        max-height: 100%;
+#title-1{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 67px;
+    line-height: 110%;
     
-        height: 100vh;
+    text-align: center;
+    letter-spacing: 0.15em;
+
+    color: #666666;        
+}
+
+#title-2{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 67px;
+    line-height: 110%;
     
-        display: flex;
-        flex-direction: column;    
-    }
+    text-align: center;
+    letter-spacing: 0.15em;        
     
-    .img_desk{
-        display: flex;
-        max-width: 100%;
-        max-height: 100%;
-        
-        width: 80%;
-        height: 100%;
+    color: #CDD3DB;
+}
 
-        margin-left: 20%;
-    }
+.subtitle{
+    display: flex;    
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 120%;
 
-    .header{
-        width: 100%;
-        height: auto;
+    text-align: center;
 
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+    color: #666666;                                        
+}
 
-    /* .logo_desk{
-        display: flex;                
-    } */
+.buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    display: flex;    
+    align-items: center;
+}
+
+@media only screen and (max-width: 320px){
+    .content{
+        margin-top: 500px;        
+    } 
 
     .header img{
-        margin-top: 10px;
-        margin-left: 35%;
-    }    
+        margin-left: 25%;
+    } 
 
-    .btnEntrar{
-        display: block;
-        width: 180px;
-        height: 47px;
-        left: 0px;
-        top: 0px;
-    
-        background: #E85E4C;
-        border-radius: 40px;
-        border: 0;
-    
-        margin-right: 20px;
-    
-        font-style: normal;
-        font-weight: normal;
-        font-size: 21px;
-        line-height: 120%;    
-    
-        text-align: center;
-        color: #CDD3DB;
-
-        /* margin-left: 250px; */
+    .img_desk,.logo_desk, .btnEntrar, .title, .subtitle {
+        display: none;
     }
+}
 
-    .btnEntrar:hover{
-        background: rgb(235, 57, 34);
+@media only screen and (min-width:375px) and (max-width: 424px){
+    .container{
+        height: 100%;
     }
 
     .content{
-        width: 100%;
-        height: auto;  
-    
-        display: flex;
-        flex-direction: column;  
-        align-items: flex-start;            
-    
-        margin-top: 28%;        
+        margin-top: 500px;
+    }
+
+    .header img{
+        margin-left: 28%;
+    }  
+
+    .img_desk,.logo_desk, .btnEntrar, .title, .subtitle {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 425px){
+    .content{
+        margin-top: 500px;
+    } 
+
+    .img_desk,.logo_desk, .btnEntrar, .title, .subtitle {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px){ 
+    .container{
+        display: flex;    
+        align-items: flex-start;
+    }
+
+    .btnEntrar, .subtitle{
+        display:block;
+    }
+
+    .header{
+       display: flex;       
+       align-items: flex-end;
+       justify-content: space-between;
+    }
+
+    .header img{
+        width: 250px;
+        margin-top: 20px;
+        margin-left: 280px;
+    }    
+
+    .content{
+        width: 80%;
+        margin-top: 350px;
+        margin-left: 90px;        
+        
+        display:flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
     }
 
     .title{
-        display: flex; 
-        margin-left: 24%;        
-    }
-    
-    #title-1{
-        font-style: normal;
-        font-weight: 300;
-        font-size: 67px;
-        line-height: 110%;
-        
-        text-align: center;
-        letter-spacing: 0.15em;
-    
-        color: #666666;        
-    }
-    
-    #title-2{
-        font-style: normal;
-        font-weight: normal;
-        font-size: 67px;
-        line-height: 110%;
-        
-        text-align: center;
-        letter-spacing: 0.15em;        
-        
-        color: #CDD3DB;
-    }
-    
-    .subtitle{
-        display: flex;    
-        font-style: normal;
-        font-weight: normal;
-        font-size: 28px;
-        line-height: 120%;
-    
-        text-align: center;
-    
-        color: #666666; 
-        margin-left: 24%;                                        
-    }
-
-    .buttons{
-        margin-left: 24%;
-        margin-top: 16px;
-    }
+        display: flex;        
+    }        
 
     .btnSecondary{
         font-size: 21px;
-        line-height: 120%;
     }
 
     .btnEntrarSec, .logo_mobile, .img_mobile{
         display: none;
     }
+    
+    
   }
+
+ @media only screen and (min-width: 1024px){
+    .btnEntrar, .title, .subtitle{
+        display:block;
+    }
+
+    .btnEntrarSec{
+        display: none;
+    }
+
+    .header{
+        width: 90%;
+        display: flex;       
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    .header img{
+        width: 250px;
+        margin-top: 20px;
+        margin-left: 450px;
+    }  
+
+    .content{        
+        margin-top: 350px;        
+        margin-left: 300px;
+        display:flex;
+        flex-direction: column;
+        align-items: flex-start;        
+    }
+
+    .title{
+        display: flex;
+    }
+
+    .container{
+        display: flex;    
+        align-items: flex-start;
+    }
+}
 

@@ -37,7 +37,7 @@ function Home(props) {
           </div>
         </header>
         <article className="mainContent">
-          <div className="content">
+          <div className="maincontent">
             <h1>Conteudo </h1>
           </div>
         </article>

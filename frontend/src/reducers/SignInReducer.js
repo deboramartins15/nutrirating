@@ -9,7 +9,7 @@ const SignInReducer = (state = initialState, action) => {
     case SIGNIN:
       return {
         ...state,
-        profissional: action.profissional
+        profissional: action.payload
       };
     default:
       return state;

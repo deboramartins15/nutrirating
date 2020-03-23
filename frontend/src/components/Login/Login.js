@@ -19,8 +19,8 @@ function Login(props) {
 
   const dispatch = useDispatch();
 
-  function logonAction(u) {
-    return { type: "LOGIN", u };
+  function logonAction(u) {   
+    return { type: "LOGIN", payload: u };
   }
 
   async function logon(history) {
@@ -29,10 +29,10 @@ function Login(props) {
         email,
         senha
       })
-
+      
       const user = {
         id: response.data.id,
-        name: response.data.name,
+        nome: response.data.nome,
         email: response.data.email
       }
 

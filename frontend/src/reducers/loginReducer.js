@@ -9,7 +9,7 @@ const LoginReducer = (state = initialState, action) => {
     case LOGIN:
       return {
         ...state,
-        profissional: action.profissional
+        profissional: action.payload
       };
     default:
       return state;

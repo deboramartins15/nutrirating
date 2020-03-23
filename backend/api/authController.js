@@ -39,7 +39,7 @@ module.exports = app => {
       const payload = {
         id: profissional.cod_profissional,
         nome: profissional.nome,
-        emai: profissional.email,
+        email: profissional.email,
         iat: now,
         exp: now + 60 * 60 * 24 * 3
       };

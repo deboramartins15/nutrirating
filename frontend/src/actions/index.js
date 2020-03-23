@@ -1,7 +1,7 @@
 import { LOGIN, SIGNIN } from './actionTypes';
 
 //ACTION CREATOR
-export const Login = value => ({    
+export const Login = value => ({       
     type: LOGIN,
     payload: value
 });

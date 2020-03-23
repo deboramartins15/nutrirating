@@ -12,6 +12,7 @@ import store from "./store";
 import Login from './components/Login/Login'
 import Home from './components/Home/Home'
 import RecoverPass from './components/RecorverPass/RecoverPass'
+import Professional from './components/Professional/Professional'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -22,6 +23,7 @@ ReactDOM.render(
         <Route path="/signup" component={Login}/>
         <Route path="/home" component={Home}/>
         <Route path="/forgot-pass" component={RecoverPass}/>
+        <Route path="/config" component={Professional}/>
       </Switch>
     </BrowserRouter>
   </Provider>,

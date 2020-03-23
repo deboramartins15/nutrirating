@@ -1,5 +1,5 @@
 import React from "react";
-// import { useSelector } from "react-redux";
+ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import "./Home.css";
@@ -7,7 +7,7 @@ import MaterialIcon from "material-icons-react";
 import Gravatar from "react-gravatar";
 
 function Home(props) {
-  // const user = useSelector(state => state.user);
+   const profissional = useSelector(state => state.Login.profissional);   
 
   function menuToggle() {
     const aside = document.querySelector(".mainAside");
@@ -48,7 +48,7 @@ function Home(props) {
               email={`testeiconuser@gmail.com`}
               alt="icon"
             />
-            <span>User Mock</span>
+            <span>{profissional.nome? profissional.nome : profissional.email}</span>
             <div className="menu-item">
               <MaterialIcon icon="logout" color="#FFF" />
               <li>
@@ -78,7 +78,7 @@ function Home(props) {
             <div className="menu-item">
               <MaterialIcon icon="settings" color="#FFF" />
               <li>
-                <Link to={"/"} className="menu-item-text">
+                <Link to={"/config"} className="menu-item-text">
                   Configurações
                 </Link>
               </li>

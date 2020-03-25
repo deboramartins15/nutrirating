@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Link } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
 
 import "./Login.css";
 
@@ -14,53 +15,49 @@ import Api from "../../service/api";
 function Login(props) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [conf_senha, setConfSenha] = useState("");
+  const [confirmacao_senha, setConfSenha] = useState("");
   const [error, setError] = useState("");
 
   const dispatch = useDispatch();
 
-  function logonAction(u) {   
+  function logonAction(u) {
     return { type: "LOGIN", payload: u };
   }
 
   async function logon(history) {
-    try{
-      const response = await Api.post("/login",{
+    try {
+      const response = await Api.post("/login", {
         email,
         senha
-      })
-      
+      });
+
       const user = {
         id: response.data.id,
         nome: response.data.nome,
         email: response.data.email
-      }
+      };
 
       const { token } = response.data;
 
-      await localStorage.setItem("@nutrirating:token", token)
-      await dispatch(logonAction(user))
-      history.push("/home")
-
-    }catch(response){
-      if (response.data)
-        setError(response.data.error)
+      await localStorage.setItem("@nutrirating:token", token);
+      await dispatch(logonAction(user));
+      history.push("/home");
+    } catch (response) {
+      if (response.data) setError(response.data.error);
     }
   }
 
   async function signin(history) {
-    try{      
-      await Api.post("/signup",{
+    try {
+      await Api.post("/signup", {
         email,
         senha,
-        conf_senha
-      })
-      
-      logon(history)
+        confirmacao_senha
+      });
 
-    }catch(response){      
-      if(response.data)
-        setError(response.data.error)
+      logon(history);
+    } catch (response) {
+      if (response.data) setError(response.data.error);
     }
   }
 
@@ -72,7 +69,16 @@ function Login(props) {
         <img className="logo_mobile" src={logo_mobile} alt="logo_mobile"></img>
         <img className="logo_desk" src={logo_desk} alt="logo_"></img>
       </div>
-      {!!error && <span className="alert alert-danger above" role="alert">{error}</span>}
+      {!!error && (
+        <Alert
+          className="above"
+          dismissible
+          variant="danger"
+          onClose={() => setError("")}
+        >
+          <span>{error}</span>
+        </Alert>
+      )}
       <div className="form_login above">
         <span className="title_login">Já possui conta? Entre já</span>
         <input

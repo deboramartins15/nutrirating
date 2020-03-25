@@ -1,6 +1,7 @@
 *{
     margin:0;
     padding: 0;
+  font-family: Merriweather;
 }
 
 .msgs-prof{    
@@ -64,6 +65,10 @@
     display: flex;    
     justify-content: flex-start;
     align-items: center;       
+}
+
+.btnAltSenha{
+    margin-top: 10px;
 }
 
 @media Screen and (max-width: 768px){

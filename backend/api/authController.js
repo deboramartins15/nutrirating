@@ -92,7 +92,9 @@ module.exports = app => {
       const novaSenha = Math.random()
         .toString(36)
         .slice(-10);
-      profissional.senha = encryptPassword(novaSenha + "ntr");
+      const novaSenhaEncrypt = encryptPassword(novaSenha + "ntr");
+      profissional.senha = novaSenhaEncrypt
+      profissional.confirmacao_senha = novaSenhaEncrypt
 
       await app
         .db("profissional")

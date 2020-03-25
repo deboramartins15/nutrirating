@@ -17,6 +17,21 @@ const encryptPassword = pass => {
 };
 
 module.exports = app => {
+  async function altSenha(cod_profissional, novaSenha) {
+    const profissional = await app
+      .db("profissional")
+      .where("cod_profissional", cod_profissional)
+      .first();
+
+    const hashAntigo = profissional.senha;
+    const hashNovo = encryptPassword(novaSenha);
+    const isMatch = await bcrypt.compareSync(novaSenha, hashAntigo);
+
+    if (novaSenha == hashAntigo) return hashAntigo;
+
+    if (!isMatch) return hashNovo;
+  }
+
   const save = async (req, res) => {
     const profissional = {
       cod_profissional: 0,
@@ -24,7 +39,7 @@ module.exports = app => {
       email: req.body.email,
       dt_nasc: req.body.dt_nasc,
       senha: req.body.senha,
-      confirmacao_senha: req.body.conf_senha,
+      confirmacao_senha: req.body.confirmacao_senha,
       sexo: req.body.sexo,
       telefone: req.body.telefone,
       conselho: req.body.conselho,
@@ -44,9 +59,8 @@ module.exports = app => {
       //   !profissional.confirmacao_senha
       // )
       //   return res.status(400).send({ error: MSG01 });
-
       if (
-        !profissional.email ||        
+        !profissional.email ||
         !profissional.senha ||
         !profissional.confirmacao_senha
       )
@@ -58,15 +72,16 @@ module.exports = app => {
       if (profissional.senha != profissional.confirmacao_senha)
         return res.status(400).send({ error: MSG04 });
 
-      const fetchDB = await app
-        .db("profissional")
-        .where("email", profissional.email)
-        .first();
-
-      if (fetchDB) return res.status(400).send({ error: MSG02 });
-
       if (profissional.cod_profissional) {
         //UPDATE
+        const newSenha = await altSenha(
+          profissional.cod_profissional,
+          profissional.senha
+        );
+
+        profissional.senha = newSenha;
+        profissional.confirmacao_senha = newSenha;
+
         app
           .db("profissional")
           .update(profissional)
@@ -75,8 +90,16 @@ module.exports = app => {
           .catch(err => res.status(500).send(err));
       } else {
         //INSERT
-        profissional.senha = encryptPassword(profissional.senha);
-        profissional.confirmacao_senha = encryptPassword(profissional.senha);
+        const fetchDB = await app
+          .db("profissional")
+          .where("email", profissional.email)
+          .first();
+
+        if (fetchDB) return res.status(400).send({ error: MSG02 });
+
+        const senhaEncrypt = encryptPassword(profissional.senha);
+        profissional.senha = senhaEncrypt;
+        profissional.confirmacao_senha = senhaEncrypt;
 
         const {
           nome,
@@ -112,7 +135,7 @@ module.exports = app => {
   };
 
   const remove = async (req, res) => {
-    const cod_profissional = req.body.id;
+    const cod_profissional = req.params.id;
 
     const hasPacient = await app
       .db("paciente")

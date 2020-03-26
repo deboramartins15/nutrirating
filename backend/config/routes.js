@@ -15,7 +15,8 @@ module.exports = app => {
   app
     .route("/paciente")
     .all(app.config.authentication.authenticate())
-    .post(app.api.pacienteController.save);
+    .post(app.api.pacienteController.save)
+    .get(app.api.pacienteController.get);
 
   app
     .route("/paciente/:id")

@@ -1,0 +1,103 @@
+*{
+    margin:0;
+    padding: 0;
+    font-family: Merriweather;
+}
+
+.msgs-pac{    
+    margin-top: 16px;
+}
+
+.container-pac{
+    width: 80%;
+    height: 90vh;
+    background: #FFF;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 5vh 20vh;
+
+    border-radius: 8px;
+    box-shadow: 10px 10px 8px rgba(250, 250, 250, 0.2);
+}
+
+.header-pac{
+    width: 95%;
+    height: 8%;
+    display:flex;
+    justify-content: flex-start;
+    
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.header-pac span{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top:15px;
+    font-size: 1.2rem;
+
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.pac-form{
+    width: 95%;
+    height: 95%;
+    display:flex;
+    flex-direction: column;
+    box-sizing: border-box;      
+
+    border-radius:  8px;
+}
+.form-control, .pac-form-row{
+    box-sizing: border-box; 
+    margin: 0px 10px 8px 0;
+}
+
+.form-pac-label{
+    margin: 10px 10px 0 5px;
+}
+
+.btn-pac{
+    width: 100%;    
+
+    display: flex;    
+    justify-content: flex-start;
+    align-items: center;       
+}
+
+.btn-acao{
+    box-sizing: border-box;
+    width: 35px;
+    height: 35px;
+    margin-top: 5px;
+    margin-right: 10px;
+
+    border-radius: 3px;
+    border: 0;
+     
+    text-align: center;
+    outline: none;
+}
+
+.btn-acao i{
+    display:flex;
+    justify-content: center;
+}
+
+.edit{
+    background: #FFD700;
+}
+
+.del{
+    background: rgba(255, 0, 0, 0.781); 
+}
+
+@media Screen and (max-width: 768px){
+    .container-pac{
+        margin: 0;
+        width: 77vh;
+        height: 100vh;
+    }
+}

@@ -79,6 +79,23 @@ module.exports = app => {
     }
   };
 
+  const get = async (req, res) => {
+    app
+      .db("paciente")
+      .select("cod_pac",
+      "nome",
+      "dt_nasc",
+      "cpf",
+      "sexo",
+      "endereco",
+      "telefone",
+      "diabetes",
+      "demencia",
+      "cod_profissional")
+      .then(paciente => res.json(paciente))
+      .catch(err => res.status(500).send(err));
+  };
+
   const getById = async (req, res) => {
     app
       .db("paciente")
@@ -100,5 +117,5 @@ module.exports = app => {
       .catch(err => res.status(500).send(err));
   };
 
-  return { save, getById };
+  return { save, getById, get };
 };

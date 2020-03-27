@@ -14,6 +14,7 @@ import Home from './components/Home/Home'
 import RecoverPass from './components/RecorverPass/RecoverPass'
 import Professional from './components/Professional/Professional'
 import Paciente from './components/Paciente/Paciente'
+import Historico from './components/Historico/Historico'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -26,6 +27,7 @@ ReactDOM.render(
         <Route path="/forgot-pass" component={RecoverPass}/>
         <Route path="/config" component={Professional}/>
         <Route path="/pacientes" component={Paciente}/>
+        <Route path="/historico/:cod_pac" component={Historico}/>
       </Switch>
     </BrowserRouter>
   </Provider>,

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 import {
   Col,
   Row,
@@ -10,7 +12,7 @@ import {
   Button,
   Table
 } from "reactstrap";
-import { Alert, Tabs, Tab } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 
 import "./Paciente.css";
 
@@ -19,7 +21,6 @@ import MaterialIcon from "material-icons-react";
 
 function Paciente(props) {
   const profissional = useSelector(state => state.Login.profissional);
-
   const [pacientes, setPacientes] = useState([]);
   const [paciente, setPaciente] = useState({
     cod_pac: 0,
@@ -31,7 +32,7 @@ function Paciente(props) {
     telefone: "",
     diabetes: "",
     demencia: "",
-    cod_profissional: 0
+    cod_profissional: profissional.id
   });
   const [msgs, setMsgs] = useState("");
 
@@ -57,20 +58,20 @@ function Paciente(props) {
       text: "Sexo"
     },
     {
-      dataField: "endereco",
-      text: "Endereço"
-    },
-    {
-      dataField: "telefone",
-      text: "Telefone"
-    },
-    {
       dataField: "demencia",
       text: "Demência"
     },
     {
       dataField: "diabetes",
       text: "Diabetes"
+    },
+    {
+      dataField: "endereco",
+      text: "Endereço"
+    },
+    {
+      dataField: "telefone",
+      text: "Telefone"
     },
     {
       dataField: "action",
@@ -84,7 +85,7 @@ function Paciente(props) {
 
   async function fetchData() {
     try {
-      const response = await Api.get("/paciente");
+      const response = await Api.get(`/pacientes/${profissional.id}`);
       setPacientes(response.data);
     } catch (err) {
       console.log(err.data);
@@ -102,11 +103,12 @@ function Paciente(props) {
       telefone: "",
       diabetes: "",
       demencia: "",
-      cod_profissional: 0
+      cod_profissional: profissional.id
     });
     fetchData();
   }
   async function save() {
+    console.log(paciente);
     const {
       nome,
       dt_nasc,
@@ -119,8 +121,8 @@ function Paciente(props) {
       cod_profissional
     } = paciente;
     try {
-      if (paciente.id) {
-        await Api.put(`/paciente/${paciente.id}`, {
+      if (paciente.cod_pac) {
+        await Api.put(`/paciente/${paciente.cod_pac}`, {
           nome,
           dt_nasc,
           cpf,
@@ -153,16 +155,6 @@ function Paciente(props) {
     }
   }
 
-  async function remove(id, e) {
-    e.preventDefault();
-
-    try {
-      await Api.delete(`/paciente/${id}`);
-      reset();
-    } catch (err) {
-      setMsgs(err.data.error);
-    }
-  }
   async function fetchPaciente(id, e) {
     e.preventDefault();
     try {
@@ -175,8 +167,7 @@ function Paciente(props) {
       setPaciente(prevPac => ({
         ...prevPac,
         ...response.data,
-        dt_nasc: data_format,
-        cod_profissional: profissional.id
+        dt_nasc: data_format
       }));
     } catch (err) {
       setMsgs(err.data.error);
@@ -196,164 +187,173 @@ function Paciente(props) {
         <div className="header-pac">
           <span>Pacientes</span>
         </div>
-        <Tabs defaultActiveKey="paciente" id="tab-paciente">
-          <Tab eventKey="dados" title="Dados">
-            <Form className="pac-form">
-              <Row className="pac-form-row">
-                <Col className="pac-form-col">
-                  <FormGroup>
-                    <Label for="namepac" className="form-pac-label">
-                      Nome
-                    </Label>
-                    <Input
-                      type="text"
-                      name="namepac"
-                      id="namepac"
-                      placeholder="Nome..."
-                      value={paciente.nome}
-                      onChange={e =>
-                        setPaciente({ ...paciente, nome: e.target.value })
-                      }
-                    />
-                  </FormGroup>
-                </Col>
-                <Col className="pac-form-col">
-                  <FormGroup>
-                    <Label for="CPFpac" className="form-pac-label">
-                      CPF
-                    </Label>
-                    <Input
-                      type="text"
-                      name="CPFpac"
-                      id="CPFpac"
-                      placeholder="CPF..."
-                      value={paciente.cpf}
-                      onChange={e =>
-                        setPaciente({ ...paciente, cpf: e.target.value })
-                      }
-                    />
-                  </FormGroup>
-                </Col>
-                <Col className="pac-form-col">
-                  <FormGroup>
-                    <Label for="dobpac" className="form-pac-label">
-                      Data Nascimento
-                    </Label>
-                    <Input
-                      type="date"
-                      name="dobpac"
-                      id="dobpac"
-                      value={paciente.dt_nasc}
-                      onChange={e =>
-                        setPaciente({ ...paciente, dt_nasc: e.target.value })
-                      }
-                    />
-                  </FormGroup>
-                </Col>
-              </Row>
-              <Row className="pac-form-row">
-                <Col className="pac-form-col">
-                  <FormGroup>
-                    <Label for="sexpac" className="form-pac-label">
-                      Sexo
-                    </Label>
-                    <Input
-                      type="select"
-                      name="sexpac"
-                      id="sexpac"
-                      value={paciente.sexo}
-                      onChange={e =>
-                        setPaciente({ ...paciente, sexo: e.target.value })
-                      }
-                    >
-                      <option>Selecionar...</option>
-                      <option>Masculino</option>
-                      <option>Feminino</option>
-                    </Input>
-                  </FormGroup>
-                </Col>
-                <Col className="pac-form-col">
-                  <FormGroup>
-                    <Label for="enderecopac" className="form-pac-label">
-                      Endereço
-                    </Label>
-                    <Input
-                      type="text"
-                      name="enderecopac"
-                      id="enderecopac"
-                      value={paciente.endereco}
-                      onChange={e =>
-                        setPaciente({ ...paciente, endereco: e.target.value })
-                      }
-                    />
-                  </FormGroup>
-                </Col>
-                <Col className="pac-form-col">
-                  <FormGroup>
-                    <Label for="telefonepac" className="form-pac-label">
-                      Telefone
-                    </Label>
-                    <Input
-                      type="text"
-                      name="telefonepac"
-                      id="telefonepac"
-                      value={paciente.telefone}
-                      onChange={e =>
-                        setPaciente({ ...paciente, telefone: e.target.value })
-                      }
-                    />
-                  </FormGroup>
-                </Col>
-              </Row>
-              <Row className="pac-form-row">
-                <Col className="pac-form-col">
-                  <FormGroup check>
-                    <Label check>
-                      <Input
-                        type="checkbox"
-                        value={paciente.demencia}
-                        onChange={e =>
-                          setPaciente({ ...paciente, demencia: e.target.value })
-                        }
-                      />{" "}
-                      Demência
-                    </Label>
-                  </FormGroup>
-                  <FormGroup check>
-                    <Label check>
-                      <Input
-                        type="checkbox"
-                        value={paciente.diabetes}
-                        onChange={e =>
-                          setPaciente({ ...paciente, diabetes: e.target.value })
-                        }
-                      />{" "}
-                      Diabetes
-                    </Label>
-                  </FormGroup>
-                </Col>
-              </Row>
-              <div className="btn-pac">
-                <Button
-                  color="primary"
-                  className="ml-3 mt-2 mb-3"
-                  onClick={() => save()}
+        <Form className="pac-form">
+          <Row className="pac-form-row">
+            <Col className="pac-form-col">
+              <FormGroup>
+                <Label for="namepac" className="form-pac-label">
+                  Nome
+                </Label>
+                <Input
+                  type="text"
+                  name="namepac"
+                  id="namepac"
+                  placeholder="Nome..."
+                  value={paciente.nome ? paciente.nome : ""}
+                  onChange={e =>
+                    setPaciente({ ...paciente, nome: e.target.value })
+                  }
+                />
+              </FormGroup>
+            </Col>
+            <Col className="pac-form-col">
+              <FormGroup>
+                <Label for="CPFpac" className="form-pac-label">
+                  CPF
+                </Label>
+                <Input
+                  type="text"
+                  name="CPFpac"
+                  id="CPFpac"
+                  placeholder="CPF..."
+                  value={paciente.cpf ? paciente.cpf : ""}
+                  onChange={e =>
+                    setPaciente({ ...paciente, cpf: e.target.value })
+                  }
+                />
+              </FormGroup>
+            </Col>
+            <Col className="pac-form-col">
+              <FormGroup>
+                <Label for="dobpac" className="form-pac-label">
+                  Data Nascimento
+                </Label>
+                <Input
+                  type="date"
+                  name="dobpac"
+                  id="dobpac"
+                  value={paciente.dt_nasc ? paciente.dt_nasc : ""}
+                  onChange={e =>
+                    setPaciente({ ...paciente, dt_nasc: e.target.value })
+                  }
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row className="pac-form-row">
+            <Col className="pac-form-col">
+              <FormGroup>
+                <Label for="sexpac" className="form-pac-label">
+                  Sexo
+                </Label>
+                <Input
+                  type="select"
+                  name="sexpac"
+                  id="sexpac"
+                  value={paciente.sexo ? paciente.sexo : ""}
+                  onChange={e =>
+                    setPaciente({ ...paciente, sexo: e.target.value })
+                  }
                 >
-                  Salvar
-                </Button>
-                <Button
-                  color="secondary"
-                  className="ml-2 mt-2 mb-3"
-                  onClick={() => reset()}
+                  <option>Selecionar...</option>
+                  <option value="M">Masculino</option>
+                  <option value="F">Feminino</option>
+                </Input>
+              </FormGroup>
+            </Col>
+            <Col className="pac-form-col">
+              <FormGroup>
+                <Label for="demenciapac" className="form-pac-label">
+                  Demência
+                </Label>
+                <Input
+                  type="select"
+                  name="demenciapac"
+                  id="demenciapac"
+                  value={paciente.demencia ? paciente.demencia : ""}
+                  onChange={e =>
+                    setPaciente({ ...paciente, demencia: e.target.value })
+                  }
                 >
-                  Cancelar
-                </Button>
-              </div>
-            </Form>
-          </Tab>
-          <Tab eventKey="avaliacao" title="Avaliações"></Tab>
-        </Tabs>
-        <Table dark hover responsive>
+                  <option>Selecionar...</option>
+                  <option value="T">Sim</option>
+                  <option value="F">Não</option>
+                </Input>
+              </FormGroup>
+            </Col>
+            <Col className="pac-form-col">
+              <FormGroup>
+                <Label for="diabetespac" className="form-pac-label">
+                  Diabetes
+                </Label>
+                <Input
+                  type="select"
+                  name="diabetespac"
+                  id="diabetespac"
+                  value={paciente.diabetes ? paciente.diabetes : ""}
+                  onChange={e =>
+                    setPaciente({ ...paciente, diabetes: e.target.value })
+                  }
+                >
+                  <option>Selecionar...</option>
+                  <option value="T">Sim</option>
+                  <option value="F">Não</option>
+                </Input>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row className="pac-form-row">
+            <Col className="pac-form-col">
+              <FormGroup>
+                <Label for="enderecopac" className="form-pac-label">
+                  Endereço
+                </Label>
+                <Input
+                  type="text"
+                  name="enderecopac"
+                  id="enderecopac"
+                  value={paciente.endereco ? paciente.endereco : ""}
+                  onChange={e =>
+                    setPaciente({ ...paciente, endereco: e.target.value })
+                  }
+                />
+              </FormGroup>
+            </Col>
+            <Col className="pac-form-col">
+              <FormGroup>
+                <Label for="telefonepac" className="form-pac-label">
+                  Telefone
+                </Label>
+                <Input
+                  type="text"
+                  name="telefonepac"
+                  id="telefonepac"
+                  value={paciente.telefone ? paciente.telefone : ""}
+                  onChange={e =>
+                    setPaciente({ ...paciente, telefone: e.target.value })
+                  }
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <div className="btn-pac">
+            <Button
+              color="primary"
+              className="ml-3 mt-2 mb-3"
+              onClick={() => save()}
+            >
+              Salvar
+            </Button>
+            <Button
+              color="secondary"
+              className="ml-2 mt-2 mb-3"
+              onClick={() => reset()}
+            >
+              Cancelar
+            </Button>
+          </div>
+        </Form>
+        <Table striped responsive>
           <thead>
             <tr>
               {columnsPac.map(column => (
@@ -369,25 +369,30 @@ function Paciente(props) {
                   <td>{pac.nome}</td>
                   <td>{pac.cpf}</td>
                   <td>{new Date(pac.dt_nasc).toLocaleDateString()}</td>
-                  <td>{pac.sexo}</td>
+                  <td>
+                    {pac.sexo && pac.sexo === "M" ? "Masculino" : "Feminino"}
+                  </td>
+                  <td>{pac.demencia && pac.demencia === "T" ? "Sim" : "Não"}</td>
+                  <td>{pac.diabetes && pac.diabetes === "T" ? "Sim" : "Não"}</td>
                   <td>{pac.endereco}</td>
                   <td>{pac.telefone}</td>
-                  <td>{pac.demencia}</td>
-                  <td>{pac.diabetes}</td>
                   <td>
-                    <button className="btn-acao edit">
+                    <button className="btn-acao">
                       <MaterialIcon
                         icon="edit"
-                        color="#FFF"
+                        color="#007bff"
                         onClick={event => fetchPaciente(pac.cod_pac, event)}
                       />
                     </button>
-                    <button
-                      className="btn-acao del"
-                      onClick={event => remove(pac.cod_pac, event)}
-                    >
-                      <MaterialIcon icon="delete" color="#FFF" />
-                    </button>
+                    <Link to={`/historico/${pac.cod_pac}`}>
+                      {" "}
+                      <button className="btn-acao">
+                        <MaterialIcon
+                          icon="history"
+                          color="#007bff"
+                        />
+                      </button>{" "}
+                    </Link>
                   </td>
                 </tr>
               );

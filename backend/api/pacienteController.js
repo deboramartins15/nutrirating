@@ -22,7 +22,7 @@ module.exports = app => {
 
     if (req.params.id) paciente.cod_pac = req.params.id;
 
-    console.log(paciente.cod_pac)
+    console.log(req.params.id)
 
     try {
       if (!paciente.nome || !paciente.cpf || !paciente.dt_nasc)
@@ -92,6 +92,7 @@ module.exports = app => {
       "diabetes",
       "demencia",
       "cod_profissional")
+      .where({ cod_profissional: req.params.cod_profissional })
       .then(paciente => res.json(paciente))
       .catch(err => res.status(500).send(err));
   };

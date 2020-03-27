@@ -11,6 +11,7 @@ import logo_desk from "../../assets/logo_desktop_login.png";
 import logo_mobile from "../../assets/logo_mobile.png";
 
 import Api from "../../service/api";
+import { login }  from "../../actions"
 
 function Login(props) {
   const [email, setEmail] = useState("");
@@ -19,10 +20,6 @@ function Login(props) {
   const [error, setError] = useState("");
 
   const dispatch = useDispatch();
-
-  function logonAction(u) {
-    return { type: "LOGIN", payload: u };
-  }
 
   async function logon(history) {
     try {
@@ -40,7 +37,7 @@ function Login(props) {
       const { token } = response.data;
 
       await localStorage.setItem("@nutrirating:token", token);
-      await dispatch(logonAction(user));
+      await dispatch(login(user));
       history.push("/home");
     } catch (response) {
       if (response.data) setError(response.data.error);

@@ -5,7 +5,6 @@ const initialState = {
 };
 
 const LoginReducer = (state = initialState, action) => {
-  console.log('entrou no reducer')
   switch (action.type) {
     case LOGIN:
       return {

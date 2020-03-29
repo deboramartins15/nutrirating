@@ -5,13 +5,11 @@ import Alert from "react-bootstrap/Alert";
 
 import "./Login.css";
 
-import bg_desk from "../../assets/bg_login.png";
-import bg_mobile from "../../assets/bg_login_mobile.png";
-import logo_desk from "../../assets/logo_desktop_login.png";
-import logo_mobile from "../../assets/logo_mobile.png";
+import bg from "../../assets/bg_login.png";
+import logo from "../../assets/logo.png";
 
 import Api from "../../service/api";
-import { login }  from "../../actions"
+import { login } from "../../actions";
 
 function Login(props) {
   const [email, setEmail] = useState("");
@@ -59,81 +57,79 @@ function Login(props) {
   }
 
   return (
-    <div className="container">
-      <img className="img_mobile" src={bg_mobile} alt="bg_mobile"></img>
-      <img className="img_desk" src={bg_desk} alt="bg"></img>
-      <div className="header_login above">
-        <img className="logo_mobile" src={logo_mobile} alt="logo_mobile"></img>
-        <img className="logo_desk" src={logo_desk} alt="logo_"></img>
+    <div className="container-login">
+      <div className="banner-login">
+        <img src={bg} alt="bg" />
       </div>
-      {!!error && (
-        <Alert
-          className="above"
-          dismissible
-          variant="danger"
-          onClose={() => setError("")}
-        >
-          <span>{error}</span>
-        </Alert>
-      )}
-      <div className="form_login above">
-        <span className="title_login">Já possui conta? Entre já</span>
-        <input
-          className="inputs"
-          type="text"
-          placeholder="Email"
-          onChange={t => setEmail(t.target.value)}
-        ></input>
-        <input
-          className="inputs"
-          type="password"
-          placeholder="Senha"
-          onChange={t => setSenha(t.target.value)}
-        ></input>
-        <div className="button_login">
-          <Route
-            render={({ history }) => (
-              <button className="btnSecondary" onClick={() => logon(history)}>
-                Entrar
-              </button>
-            )}
-          />
+      <div className="header-login above">
+        <img src={logo} alt="logo" />
+      </div>
+      <div className="content-login above">
+        {!!error && (
+          <Alert
+            className="above"
+            dismissible
+            variant="danger"
+            onClose={() => setError("")}
+          >
+            <span>{error}</span>
+          </Alert>
+        )}
+        <div className="form-login above">
+          <span className="title-login">Já possui conta? Entre já</span>
+          <input
+            className="inputs"
+            type="text"
+            placeholder="Email"
+            onChange={t => setEmail(t.target.value)}
+          ></input>
+          <input
+            className="inputs"
+            type="password"
+            placeholder="Senha"
+            onChange={t => setSenha(t.target.value)}
+          ></input>
+          <div className="btn-login">
+            <Route
+              render={({ history }) => (
+                <button onClick={() => logon(history)}>Entrar</button>
+              )}
+            />
+          </div>
+          <Link to="/forgot-pass">
+            {" "}
+            <span className="forgot-pass">Esqueceu a senha ?</span>{" "}
+          </Link>
         </div>
-        <Link to="/forgot-pass">
-          {" "}
-          <span className="forgot_pass">Esqueceu a senha ?</span>{" "}
-        </Link>
-      </div>
-      <div className="form_signin above">
-        <span className="title_signin">
-          Novo por aqui? Cadastre-se e comece já
-        </span>
-        <input
-          className="inputs_signin"
-          type="text"
-          placeholder="Email"
-          onChange={t => setEmail(t.target.value)}
-        ></input>
-        <input
-          className="inputs_signin"
-          type="password"
-          placeholder="Senha"
-          onChange={t => setSenha(t.target.value)}
-        ></input>
-        <input
-          className="inputs_signin"
-          type="password"
-          placeholder="Confirmação senha"
-          onChange={t => setConfSenha(t.target.value)}
-        ></input>
-        <div className="button_signin">
-          <Route
-            render={({ history }) => (
-              <button className="btnPrimary" onClick={() => signin(history)}>
-                Comece já
-              </button>
-            )}
-          />
+        <div className="form-signin above">
+          <span className="title-login">
+            Novo por aqui? Cadastre-se e comece já
+          </span>
+          <input
+            className="inputs"
+            type="text"
+            placeholder="Email"
+            onChange={t => setEmail(t.target.value)}
+          ></input>
+          <input
+            className="inputs"
+            type="password"
+            placeholder="Senha"
+            onChange={t => setSenha(t.target.value)}
+          ></input>
+          <input
+            className="inputs"
+            type="password"
+            placeholder="Confirmação senha"
+            onChange={t => setConfSenha(t.target.value)}
+          ></input>
+          <div className="btn-signin">
+            <Route
+              render={({ history }) => (
+                <button onClick={() => signin(history)}>Comece já</button>
+              )}
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -1,243 +1,159 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Merriweather;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Merriweather;
 }
 
-.above{
-    position: absolute;
-    z-index: 9999;
+body {
+  height: 100vh;
 }
 
-a:hover, .btnEntrar:hover{
-    text-decoration: none;
+.above {
+  position: absolute;
+  z-index: 9999;
 }
 
-.btnEntrar{
-    display: block;
-    width: 150px;
-    height: 47px;
-    left: 0px;
-    top: 0px;
+.container-landing {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 
-    background: #E85E4C;
-    border-radius: 40px;
-    border: 0;
-
-    margin-right: 10px;
-
-    font-style: normal;
-    font-weight: normal;
-    font-size: 21px;
-    line-height: 120%;    
-
-    text-align: center;
-    color: #CDD3DB;        
+  background-color: #424242;
 }
 
-.btnEntrar:hover{
-    background: rgb(235, 57, 34);
+.banner-landing {
+  width: 100%;
+  height: 100%;
 }
 
-.btnSecondary{
-    width: 216px;
-    height: 49px;
-    left: 0px;
-    top: 0px;
-
-    background: #553463;
-    border-radius: 40px;
-    border: none;
-
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 140%;   
-
-    text-align: center;
-
-    color: #CDD3DB;
-    margin-top: 10px;
+.banner-landing img {
+  width: 100%;
+  height: 100vh;
+  opacity: 0.6;
 }
 
-.btnSecondary:hover{
-    border: 1px solid #CDD3DB;
+.header-landing {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+
+  order: 1;
 }
 
-#title-1{
-    font-style: normal;
-    font-weight: 300;
-    font-size: 67px;
-    line-height: 110%;
-    
-    text-align: center;
-    letter-spacing: 0.15em;
-
-    color: #666666;        
+.header-landing img {
+  width: 200px;
+  height: auto;
+  margin-left: 24px;
 }
 
-#title-2{
-    font-style: normal;
-    font-weight: normal;
-    font-size: 67px;
-    line-height: 110%;
-    
-    text-align: center;
-    letter-spacing: 0.15em;        
-    
-    color: #CDD3DB;
+.header-landing .btnEntrar {
+  width: 110px;
+  height: 50px;
+  left: 0px;
+  top: 0px;
+
+  background: #e85e4c;
+  border: 0;
+
+  margin-right: 24px;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #cdd3db;
 }
 
-.subtitle{
-    display: flex;    
-    font-style: normal;
-    font-weight: normal;
-    font-size: 28px;
-    line-height: 120%;
-
-    text-align: center;
-
-    color: #666666;                                        
+.header-landing .btnEntrar:hover {
+  background: rgb(235, 57, 34);
 }
 
-.buttons{
-    display: flex;
-    flex-direction: column;
+.content-landing {
+  order: 2;
+  width: 100%;
+  top: 350px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.container{
-    display: flex;    
-    align-items: center;
+.content-landing .title {
+  font-weight: 800;
+  font-size: 3.5em;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: rgba(205, 211, 219, 0.918);
 }
 
-@media only screen and (max-width: 320px){
-    .content{
-        margin-top: 500px;        
-    } 
+.content-landing .subtitle {
+  color: rgba(205, 211, 219, 0.918);
 
-    .header img{
-        margin-left: 25%;
-    } 
-
-    .img_desk,.logo_desk, .btnEntrar, .title, .subtitle {
-        display: none;
-    }
+  font-weight: 100;
+  font-size: 1.8em;
+  letter-spacing: 0.28em;
 }
 
-@media only screen and (min-width:375px) and (max-width: 424px){
-    .container{
-        height: 100%;
-    }
+.content-landing .btnComece{
+  width: 150px;
+  height: 50px;
+  margin-left: 24px;
+  margin-top: 16px;
 
-    .content{
-        margin-top: 500px;
-    }
+  background: #553463;
+  border: none;
 
-    .header img{
-        margin-left: 28%;
-    }  
-
-    .img_desk,.logo_desk, .btnEntrar, .title, .subtitle {
-        display: none;
-    }
+  font-size: 1.15em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #cdd3db;
 }
 
-@media only screen and (min-width: 425px){
-    .content{
-        margin-top: 500px;
-    } 
-
-    .img_desk,.logo_desk, .btnEntrar, .title, .subtitle {
-        display: none;
-    }
+.content-landing .btnComece:hover{
+    background: #49155f; 
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1023px){ 
-    .container{
-        display: flex;    
-        align-items: flex-start;
+@media Screen and (max-width: 768px){
+    .content-landing .title {
+        font-size: 1.8em;
+        letter-spacing: 0.2em;
     }
-
-    .btnEntrar, .subtitle{
-        display:block;
-    }
-
-    .header{
-       display: flex;       
-       align-items: flex-end;
-       justify-content: space-between;
-    }
-
-    .header img{
-        width: 250px;
-        margin-top: 20px;
-        margin-left: 280px;
-    }    
-
-    .content{
-        width: 80%;
-        margin-top: 350px;
-        margin-left: 90px;        
-        
-        display:flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-    }
-
-    .title{
-        display: flex;        
-    }        
-
-    .btnSecondary{
-        font-size: 21px;
-    }
-
-    .btnEntrarSec, .logo_mobile, .img_mobile{
-        display: none;
-    }
-    
-    
-  }
-
- @media only screen and (min-width: 1024px){
-    .btnEntrar, .title, .subtitle{
-        display:block;
-    }
-
-    .btnEntrarSec{
-        display: none;
-    }
-
-    .header{
-        width: 90%;
-        display: flex;       
-        align-items: flex-end;
-        justify-content: space-between;
-    }
-
-    .header img{
-        width: 250px;
-        margin-top: 20px;
-        margin-left: 450px;
-    }  
-
-    .content{        
-        margin-top: 350px;        
-        margin-left: 300px;
-        display:flex;
-        flex-direction: column;
-        align-items: flex-start;        
-    }
-
-    .title{
-        display: flex;
-    }
-
-    .container{
-        display: flex;    
-        align-items: flex-start;
-    }
+      
+      .content-landing .subtitle {
+        font-size: 1em;
+        letter-spacing: 0.3em;
+      } 
+      
+      .content-landing .btnComece{
+        font-size: 1.0em;  
+      }
 }
 
+@media Screen and (max-width: 320px){
+    .header-landing img {
+        width: 150px;
+    }
+
+    .content-landing .btnComece{
+        width: 110px;
+        font-size: 0.8em;
+    }
+
+    .header-landing .btnEntrar{
+        width: 80px;
+        font-size: 0.8em;
+    }
+
+    .content-landing .title {
+        font-size: 1.5em;
+        letter-spacing: 0.2em;
+    }
+      
+      .content-landing .subtitle {
+        font-size: 0.9em;
+        letter-spacing: 0.3em;
+      }
+}

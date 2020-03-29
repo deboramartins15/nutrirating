@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 
 import "./Home.css";
 import MaterialIcon from "material-icons-react";
-import Gravatar from "react-gravatar";
 
 function Home(props) {
-   const profissional = useSelector(state => state.Login.profissional);   
+  const profissional = useSelector(state => state.Login.profissional);
 
   function menuToggle() {
     const aside = document.querySelector(".mainAside");
@@ -29,11 +28,10 @@ function Home(props) {
             />
           </div>
           <div className="menu">
-            <Gravatar
-              className="menu-img"
-              email={`testeiconuser@gmail.com`}
-              alt="icon"
-            />
+            <MaterialIcon icon="account_circle" color="#FFF" />
+            <span>
+              {profissional.nome ? profissional.nome : profissional.email}
+            </span>
           </div>
         </header>
         <article className="mainContent">
@@ -43,20 +41,10 @@ function Home(props) {
         </article>
         <aside className="mainAside">
           <div className="menu-header">
-            <Gravatar
-              className="menu-img"
-              email={`testeiconuser@gmail.com`}
-              alt="icon"
-            />
-            <span>{profissional.nome? profissional.nome : profissional.email}</span>
-            <div className="menu-item">
-              <MaterialIcon icon="logout" color="#FFF" />
-              <li>
-                <Link to={"/"} className="menu-item-text">
-                  Sair
-                </Link>
-              </li>
-            </div>
+            <MaterialIcon icon="account_circle" color="#FFF" size="medium" />
+            <span>
+              {profissional.nome ? profissional.nome : profissional.email}
+            </span>
           </div>
           <ul className="menu-lista">
             <div className="menu-item">
@@ -80,6 +68,14 @@ function Home(props) {
               <li>
                 <Link to={"/config"} className="menu-item-text">
                   Configurações
+                </Link>
+              </li>
+            </div>
+            <div className="menu-item">
+              <MaterialIcon icon="logout" color="#FFF" />
+              <li>
+                <Link to={"/"} className="menu-item-text">
+                  Sair
                 </Link>
               </li>
             </div>

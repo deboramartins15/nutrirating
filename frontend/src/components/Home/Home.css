@@ -44,6 +44,12 @@
   align-items: center;
 }
 
+.menu span{
+  font-size: 1em;
+  color: #FFF;
+  margin-top: 2px;
+  margin-left: 10px;
+}
 
 
 ::-webkit-input-placeholder {
@@ -76,14 +82,19 @@
 
 .menu-header {
   width: 100%;
-  height: 200px;
+  height: 90px;
 
   border-bottom: 1px solid rgba(250, 250, 250, 0.1);
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.menu-header span{
+  font-size: 1.2em;
+  margin-top: 5px;
+  margin-left: 10px;
 }
 
 .menu-img{

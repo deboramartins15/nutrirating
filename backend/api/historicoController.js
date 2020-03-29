@@ -16,20 +16,14 @@ module.exports = app => {
           "resultado_avglobal",
           "cod_pac"
         )
-        .where({ cod_pac: avaliacao.cod_pac})    
+        .where({ cod_pac: avaliacao.cod_pac })
         .then(historico => res.json(historico))
         .catch(err => res.status(500).send(err));
-
     } else if (avaliacao.tipo == "ASG") {
-        app
+      app
         .db("asg")
-        .select(
-          "codigo",
-          "data",
-          "resultado",
-          "cod_pac"
-        )
-        .where({ cod_pac: avaliacao.cod_pac})    
+        .select("codigo", "data", "resultado", "cod_pac")
+        .where({ cod_pac: avaliacao.cod_pac })        
         .then(historico => res.json(historico))
         .catch(err => res.status(500).send(err));
     }
@@ -43,35 +37,29 @@ module.exports = app => {
     };
 
     if (avaliacao.tipo == "MAN") {
-        app
-          .db("man")
-          .select(
-            "codigo",
-            "data",
-            "resultado_total",
-            "resultado_triagem",
-            "resultado_avglobal",
-            "cod_pac"
-          )
-          .where({ cod_pac: avaliacao.cod_pac, codigo:avaliacao.cod_av })
-          .first()    
-          .then(historico => res.json(historico))
-          .catch(err => res.status(500).send(err));
-  
-      } else if (avaliacao.tipo == "ASG") {
-          app
-          .db("asg")
-          .select(
-            "codigo",
-            "data",
-            "resultado",
-            "cod_pac"
-          )
-          .where({ cod_pac: avaliacao.cod_pac, codigo:historico.cod_av }) 
-          .first()   
-          .then(historico => res.json(historico))
-          .catch(err => res.status(500).send(err));
-      }
+      app
+        .db("man")
+        .select(
+          "codigo",
+          "data",
+          "resultado_total",
+          "resultado_triagem",
+          "resultado_avglobal",
+          "cod_pac"
+        )
+        .where({ cod_pac: avaliacao.cod_pac, codigo: avaliacao.cod_av })
+        .first()        
+        .then(historico => res.json(historico))
+        .catch(err => res.status(500).send(err));
+    } else if (avaliacao.tipo == "ASG") {
+      app
+        .db("asg")
+        .select("codigo", "data", "resultado", "cod_pac")
+        .where({ cod_pac: avaliacao.cod_pac, codigo: historico.cod_av })
+        .first()
+        .then(historico => res.json(historico))
+        .catch(err => res.status(500).send(err));
+    }
   };
 
   return { get, getById };

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { Collapse } from "reactstrap";
 
 import "./Home.css";
 import MaterialIcon from "material-icons-react";
@@ -15,6 +16,9 @@ function Home(props) {
     aside.classList.toggle("asideToggle");
     content.classList.toggle("contentToggle");
   }
+
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
 
   return (
     <>
@@ -58,11 +62,25 @@ function Home(props) {
             <div className="menu-item">
               <MaterialIcon icon="insert_drive_file" color="#FFF" />
               <li>
-                <Link to={"/exames"} className="menu-item-text">
+                <Link className="menu-item-text" onClick={toggle}>
                   Avaliações
                 </Link>
               </li>
             </div>
+            <Collapse isOpen={isOpen}>
+              <div className="menu-item">
+                <MaterialIcon icon="keyboard_arrow_right" color="#FFF" />
+                <li>
+                  <Link to={"/avaliacao/asg"} className="menu-item-text">Subjetiva Global</Link>{" "}
+                </li>
+              </div>
+              <div className="menu-item">
+                <MaterialIcon icon="keyboard_arrow_right" color="#FFF" />
+                <li>
+                  <Link to={"/avaliacao/man"} className="menu-item-text">Mini Avaliação</Link>{" "}
+                </li>
+              </div>
+            </Collapse>
             <div className="menu-item">
               <MaterialIcon icon="settings" color="#FFF" />
               <li>

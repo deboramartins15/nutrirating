@@ -16,6 +16,8 @@ import RecoverPass from "./components/RecorverPass/RecoverPass";
 import Professional from "./components/Professional/Professional";
 import Paciente from "./components/Paciente/Paciente";
 import Historico from "./components/Historico/Historico";
+import AvaliacaoMAN from "./components/Avaliacao/MAN/AvaliacaoMAN";
+import AvaliacaoASG from "./components/Avaliacao/ASG/AvaliacaoASG";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -30,6 +32,8 @@ ReactDOM.render(
           <Route path="/config" component={Professional} />
           <Route path="/pacientes" component={Paciente} />
           <Route path="/historico/:cod_pac" component={Historico} />
+          <Route path="/avaliacao/asg" component={AvaliacaoASG} />
+          <Route path="/avaliacao/man" component={AvaliacaoMAN} />
         </Switch>
       </BrowserRouter>
     </PersistGate>

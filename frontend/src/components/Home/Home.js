@@ -71,13 +71,13 @@ function Home(props) {
               <div className="menu-item">
                 <MaterialIcon icon="keyboard_arrow_right" color="#FFF" />
                 <li>
-                  <Link to={"/avaliacao/asg"} className="menu-item-text">Subjetiva Global</Link>{" "}
+                {" "}<Link to={"/avaliacao/asg"} className="menu-item-text">Subjetiva Global</Link>{" "}
                 </li>
               </div>
               <div className="menu-item">
                 <MaterialIcon icon="keyboard_arrow_right" color="#FFF" />
                 <li>
-                  <Link to={"/avaliacao/man"} className="menu-item-text">Mini Avaliação</Link>{" "}
+                {" "}<Link to={"/avaliacao/man"} className="menu-item-text">Mini Avaliação</Link>{" "}
                 </li>
               </div>
             </Collapse>

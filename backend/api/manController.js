@@ -10,9 +10,6 @@ module.exports = app => {
         qtd_medicamentos: req.body.av_global.qtd_medicamentos,
         escaras_lesoes_pele: req.body.av_global.escaras_lesoes_pele,
         qtd_refeicao_dia: req.body.av_global.qtd_refeicao_dia,
-        consumo_leite_derivados: req.body.av_global.consumo_leite_derivados,
-        consumo_leguminosas_ovos: req.body.av_global.consumo_leguminosas_ovos,
-        consumo_proteina: req.body.av_global.consumo_proteina,
         somatorio_consumo: req.body.av_global.somatorio_consumo,
         consumo_frutas_hortalicas: req.body.av_global.consumo_frutas_hortalicas,
         consumo_liquidos: req.body.av_global.consumo_liquidos,
@@ -101,9 +98,6 @@ module.exports = app => {
         av_g.qtd_medicamentos == "" ||
         av_g.escaras_lesoes_pele == "" ||
         av_g.qtd_refeicao_dia == "" ||
-        av_g.consumo_leite_derivados == "" ||
-        av_g.consumo_leguminosas_ovos == "" ||
-        av_g.consumo_proteina == "" ||
         av_g.somatorio_consumo == "" ||
         av_g.consumo_frutas_hortalicas == "" ||
         av_g.consumo_liquidos == "" ||
@@ -120,9 +114,6 @@ module.exports = app => {
         qtd_medicamentos,
         escaras_lesoes_pele,
         qtd_refeicao_dia,
-        consumo_leite_derivados,
-        consumo_leguminosas_ovos,
-        consumo_proteina,
         somatorio_consumo,
         consumo_frutas_hortalicas,
         consumo_liquidos,
@@ -140,9 +131,6 @@ module.exports = app => {
           qtd_medicamentos,
           escaras_lesoes_pele,
           qtd_refeicao_dia,
-          consumo_leite_derivados,
-          consumo_leguminosas_ovos,
-          consumo_proteina,
           somatorio_consumo,
           consumo_frutas_hortalicas,
           consumo_liquidos,

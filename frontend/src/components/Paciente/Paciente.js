@@ -385,13 +385,13 @@ function Paciente(props) {
                       />
                     </button>
                     <Link to={`/historico/${pac.cod_pac}`}>
-                      {" "}
+                     
                       <button className="btn-acao">
                         <MaterialIcon
                           icon="history"
                           color="#007bff"
                         />
-                      </button>{" "}
+                      </button>
                     </Link>
                   </td>
                 </tr>

@@ -72,7 +72,7 @@
     width: 25px;
     height: 25px;
     margin-top: 5px;
-    margin-right: 10px;
+    margin-right: 5px;
 
     border-radius: 3px;
     border: 0;
@@ -86,6 +86,7 @@
     display:flex;
     justify-content: center;
 }
+
 
 table thead tr {
     background-color: #6c757d;

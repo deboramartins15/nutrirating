@@ -1,31 +1,150 @@
-.container-man{
-    width: 80%;
-    height: 90vh;
-    background: #FFF;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    margin: 5vh 20vh;
+.container-man {
+  width: 80%;
+  height: 90vh;
+  background: #fff;
 
-    border-radius: 8px;
-    box-shadow: 10px 10px 8px rgba(250, 250, 250, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 0 20vh;
+
+  border-radius: 8px;
+  box-shadow: 10px 10px 8px rgba(250, 250, 250, 0.2);
 }
 
-.header-man{
-    width: 95%;
-    height: 8%;
-    display:flex;    
-    justify-content: flex-start;
-    
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+.msgs-man {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.header-man span{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-top:15px;
-    font-size: 1.2rem;
+.header-man {
+  width: 95%;
+  height: 8%;
+  display: flex;
+  justify-content: flex-start;
 
-    color: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.header-man span {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 15px;
+  font-size: 1.2rem;
+
+  color: rgba(0, 0, 0, 0.4);
+}
+.header-etapa {
+  width: 95%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 5px;
+}
+
+.header-etapa span {
+  font-size: 1.5em;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.pac-man {
+  width: 300px;
+}
+
+.container-triagem,
+.container-avglobal {
+  width: 100%;
+  height: auto;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 7vh 20vh;
+  border-radius: 8px;
+  box-shadow: 10px 10px 8px rgba(250, 250, 250, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  height: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.triagem-form,
+.avglobal-form {
+  width: 95%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  border-radius: 8px;
+}
+.form-control,
+.triagem-form-row,
+.avglobal-form-row {
+  box-sizing: border-box;
+  margin: 0px 10px 8px 0;
+}
+
+.form-triagem-label,
+.form-avglobal-label {
+  margin: 10px 10px 0 5px;
+}
+
+.btn-result-triagem,
+.btn-result-avglobal {
+  width: 100%;
+}
+
+.btn-result-avglobal {
+  margin-bottom: 10px;
+}
+
+.btnTriagem,
+.btnavglobal {
+  width: 150px;
+}
+
+.hide_av {
+  display: none;
+}
+
+.show_av {
+  display: flex;
+}
+
+@media Screen and (max-width: 768px) {
+  .container-man {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .header-etapa span {
+    font-size: 1.2em;
+  }
+
+  .triagem-form-row,.avglobal-form-row{
+    display: block;
+  }
+
+  .pac-man {
+    width: 250px;
+  }
+}
+
+@media Screen and (max-width: 320px) {
+  .pac-man {
+    width: 200px;
+  }
 }

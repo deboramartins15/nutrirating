@@ -9,10 +9,11 @@ import "./AvaliacaoMAN.css";
 import Api from "../../../service/api";
 
 export default function AvaliacaoMAN() {
-  const profissional = useSelector(state => state.Login.profissional);
-  const [paciente,setPaciente] = useState("")
-  const [pacientes,setPacientes] = useState([])
-  const [etapa,setEtapa] = useState("Triagem")
+  const profissional = useSelector((state) => state.Login.profissional);
+  const [paciente, setPaciente] = useState("");
+  const [rOnly, setROnly] = useState(false);
+  const [pacientes, setPacientes] = useState([]);
+  const [etapa, setEtapa] = useState("Triagem");
   const [msgs, setMsgs] = useState("");
   const [triagem, setTriagem] = useState({
     diminuicao_ingestao_alimentar: 0,
@@ -50,8 +51,27 @@ export default function AvaliacaoMAN() {
     }
   }
 
-  function handleTriagem(e) {
+  async function save(){
+    try {
+      const response = await Api.post("/avaliacao/man", {
+        cod_pac: paciente,
+        triagem,
+        av_global:avGlobal,
+      });
+
+      setMsgs(`Resultado Final: ${response.data.resultado}`);
+    } catch (err) {
+      console.log(err.data);
+    } 
+  }
+
+  async function handleTriagem(e) {
     e.preventDefault();
+    
+    if(!paciente){
+      setMsgs('Informe o paciente')
+      return;
+    }
 
     let resultado = 0;
     Object.entries(triagem).forEach(([key, value]) => {
@@ -60,7 +80,7 @@ export default function AvaliacaoMAN() {
 
     //  SE O RESULTADO FOR <= 11, MOSTRA A AV GLOBAL
     if (resultado <= 11) {
-      setMsgs(`Resultado: ${resultado}. Prossiga para a Avaliação Global.`);
+      setMsgs(`Para uma avaliação mais detalhada,continue para a Avaliação Global.`);
       const avG = document.querySelector(".container-avglobal");
       const t = document.querySelector(".container-triagem");
 
@@ -68,43 +88,51 @@ export default function AvaliacaoMAN() {
       avG.classList.add("show_av");
 
       t.classList.add("hide_av");
-      setEtapa("Avaliação Global")
+      setEtapa("Avaliação Global");
     } else {
       // CHAMADA A API
-      // MOSTRA O RESULTADO
-      setMsgs(`Resultado: ${resultado}`);
+      save();  
       // DESABILITA ATRAVES DO STATE O BOTÃO DO RESULTADO
+      setROnly(true)
     }
   }
 
-  function handleAvGlobal(e) {
+  async function handleAvGlobal(e) {
     e.preventDefault();
-    console.log(avGlobal);
+
+    // CHAMADA A API
+    save();  
+    // DESABILITA ATRAVES DO STATE O BOTÃO DO RESULTADO
+    setROnly(true)
   }
 
   return (
     <div className="container-man">
       <div className="msgs-man">
-      {!!msgs && (
-        <Alert
-          className="above"
-          dismissible
-          variant="info"
-          onClose={() => setMsgs("")}
-        >
-          <span>{msgs}</span>
-        </Alert>
-      )}      
+        {!!msgs && (
+          <Alert
+            className="above"
+            dismissible
+            variant="info"
+            onClose={() => setMsgs("")}
+          >
+            <span>{msgs}</span>
+          </Alert>
+        )}
       </div>
       <div className="header-man">
         <span>Mini Avaliação Nutricional</span>
       </div>
       <div className="header-etapa">
         <span>{etapa}</span>
-        <Input className="pac-man" type="select" onChange={(e) => setPaciente(e.target.value)}>
+        <Input
+          className="pac-man"
+          type="select"
+          onChange={(e) => setPaciente(e.target.value)}
+        >
           <option>Paciente...</option>
-          {pacientes.map(pac => {
-            return <option>{pac.nome}</option>
+          {pacientes.map((pac) => {
+            return <option key={pac.cod_pac} value={pac.cod_pac}>{pac.nome}</option>;
           })}
         </Input>
       </div>
@@ -113,7 +141,7 @@ export default function AvaliacaoMAN() {
           <Form>
             <Row className="triagem-form-row">
               <Col className="triagem-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-triagem-label">
                     Nos últimos três meses houve diminuição da ingesta alimentar
                     devido a perda de apetite,problemas digestivos ou
@@ -136,7 +164,7 @@ export default function AvaliacaoMAN() {
                 </FormGroup>
               </Col>
               <Col className="triagem-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-triagem-label">
                     Perda de peso nos últimos 3 meses
                   </Label>
@@ -158,7 +186,7 @@ export default function AvaliacaoMAN() {
                 </FormGroup>
               </Col>
               <Col className="triagem-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-triagem-label">Mobilidade</Label>
                   <Input
                     type="select"
@@ -183,7 +211,7 @@ export default function AvaliacaoMAN() {
             </Row>
             <Row className="triagem-form-row">
               <Col className="triagem-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-triagem-label">
                     Passou por algum stress psicológico ou doença aguda nos
                     últimos três meses?
@@ -204,7 +232,7 @@ export default function AvaliacaoMAN() {
                 </FormGroup>
               </Col>
               <Col className="triagem-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-triagem-label">
                     Problemas neuropsicológicos
                   </Label>
@@ -225,7 +253,7 @@ export default function AvaliacaoMAN() {
                 </FormGroup>
               </Col>
               <Col className="triagem-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-triagem-label">
                     Índice de Massa Corporal
                   </Label>
@@ -255,6 +283,7 @@ export default function AvaliacaoMAN() {
               <Button
                 color="primary"
                 className="ml-3 mt-2 mb-3 btnTriagem"
+                disabled={rOnly}
                 onClick={(e) => handleTriagem(e)}
               >
                 Resultado Triagem
@@ -268,7 +297,7 @@ export default function AvaliacaoMAN() {
           <Form>
             <Row className="avglobal-form-row">
               <Col className="avglobal-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-avglobal-label">
                     O doente vive na sua própria casa?
                   </Label>
@@ -288,7 +317,7 @@ export default function AvaliacaoMAN() {
                 </FormGroup>
               </Col>
               <Col className="avglobal-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-avglobal-label">
                     Utiliza mais de três medicamentos diferentes por dia?
                   </Label>
@@ -308,7 +337,7 @@ export default function AvaliacaoMAN() {
                 </FormGroup>
               </Col>
               <Col className="avglobal-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-avglobal-label">
                     Lesões de pele ou escaras?
                   </Label>
@@ -328,7 +357,7 @@ export default function AvaliacaoMAN() {
                 </FormGroup>
               </Col>
               <Col className="avglobal-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-avglobal-label">
                     Quantas refeições faz por dia?
                   </Label>
@@ -351,7 +380,7 @@ export default function AvaliacaoMAN() {
             </Row>
             <Row className="avglobal-form-row">
               <Col className="avglobal-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-avglobal-label">
                     O paciente consome: - Pelo menos uma porção diária de leite
                     ou derivados(leite,queijo,iogurte)? - Duas ou mais porções
@@ -375,7 +404,7 @@ export default function AvaliacaoMAN() {
                 </FormGroup>
               </Col>
               <Col className="avglobal-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-avglobal-label">
                     O paciente consome duas ou mais porções diárias de fruta ou
                     produtos hortícolas?
@@ -396,7 +425,7 @@ export default function AvaliacaoMAN() {
                 </FormGroup>
               </Col>
               <Col className="avglobal-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-avglobal-label">
                     Quantos copos de líquidos o paciente consome por dia?
                   </Label>
@@ -417,7 +446,7 @@ export default function AvaliacaoMAN() {
                 </FormGroup>
               </Col>
               <Col className="avglobal-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-avglobal-label">
                     Modo de se alimentar
                   </Label>
@@ -446,7 +475,7 @@ export default function AvaliacaoMAN() {
             </Row>
             <Row className="avglobal-form-row">
               <Col className="avglobal-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-avglobal-label">
                     O paciente acredita ter algum problema nutricional?
                   </Label>
@@ -469,7 +498,7 @@ export default function AvaliacaoMAN() {
                 </FormGroup>
               </Col>
               <Col className="avglobal-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-avglobal-label">
                     Em comparação com outras pessoas da mesma idade,como
                     considera o paciente a sua própria saúde?
@@ -492,7 +521,7 @@ export default function AvaliacaoMAN() {
                 </FormGroup>
               </Col>
               <Col className="avglobal-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-avglobal-label">
                     Perímetro braquial(PB) em cm
                   </Label>
@@ -513,7 +542,7 @@ export default function AvaliacaoMAN() {
                 </FormGroup>
               </Col>
               <Col className="avglobal-form-col">
-                <FormGroup>
+                <FormGroup className="form-group-man">
                   <Label className="form-avglobal-label">
                     Perímetro da perna(PP) em cm
                   </Label>
@@ -537,6 +566,7 @@ export default function AvaliacaoMAN() {
               <Button
                 color="primary"
                 className="ml-3 mt-2 mb-3 btnavglobal"
+                disabled={rOnly}
                 onClick={(e) => handleAvGlobal(e)}
               >
                 Resultado Final

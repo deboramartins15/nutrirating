@@ -7,9 +7,8 @@ import {
   Label,
   Input,
   Button,
-  Table
+  Table,
 } from "reactstrap";
-
 
 import "./Historico.css";
 
@@ -17,7 +16,7 @@ import Api from "../../service/api";
 
 function Historico(props) {
   const {
-    match: { params }
+    match: { params },
   } = props;
 
   const [avaliacoes, setAvaliacoes] = useState([]);
@@ -26,32 +25,32 @@ function Historico(props) {
   const columns = [
     {
       dataField: "codigo",
-      text: "ID"
+      text: "ID",
     },
     {
       dataField: "cod_pac",
-      text: "Paciente"
+      text: "Paciente",
     },
     {
       dataField: "data",
-      text: "Data"
+      text: "Data",
     },
     {
       dataField: "resultado",
-      text: "Resultado"
+      text: "Resultado",
     },
     {
       dataField: "resultado_triagem",
-      text: "Resultado Triagem"
+      text: "Resultado Triagem",
     },
     {
       dataField: "resultado_avglobal",
-      text: "Resultado Av. Global"
-    }
+      text: "Resultado Av. Global",
+    },
   ];
 
   async function search(e) {
-    e.preventDefault()
+    e.preventDefault();
     try {
       if (pSearch === "MAN") {
         const response = await Api.get(`/historico/${params.cod_pac}/MAN`);
@@ -65,9 +64,9 @@ function Historico(props) {
     }
   }
 
-  function handlepSearch(value){
-    setPSearch(value)
-    setAvaliacoes([])
+  function handlepSearch(value) {
+    setPSearch(value);
+    setAvaliacoes([]);
   }
 
   return (
@@ -88,7 +87,7 @@ function Historico(props) {
                   name="buscahist"
                   id="buscahist"
                   value={pSearch}
-                  onChange={e => handlepSearch(e.target.value)}
+                  onChange={(e) => handlepSearch(e.target.value)}
                 >
                   <option>Selecionar...</option>
                   <option value="MAN">MAN</option>
@@ -97,26 +96,28 @@ function Historico(props) {
               </FormGroup>
             </Col>
             <Col className="hist-form-col">
-              <Button
-                color="primary"
-                className="mt-4 mb-3 btn-hist"
-                onClick={e => search(e)}
-              >
-                Buscar
-              </Button>
+              
+                <Button
+                  color="primary"
+                  className="mt-4 mb-3 btn-hist"
+                  onClick={(e) => search(e)}
+                >
+                  Buscar
+                </Button>
+        
             </Col>
           </Row>
         </Form>
         <Table striped responsive>
           <thead>
             <tr>
-              {columns.map(column => (
+              {columns.map((column) => (
                 <th key={column.dataField}>{column.text}</th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {avaliacoes.map(aval => {
+            {avaliacoes.map((aval) => {
               return (
                 <tr key={aval.codigo}>
                   <td>{aval.codigo}</td>

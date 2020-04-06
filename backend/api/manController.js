@@ -3,6 +3,7 @@ const MSG02 = "Informe o paciente";
 
 module.exports = app => {
   const save = async (req, res) => {
+    console.log(req.body)
     const man = {
       cod_pac: req.body.cod_pac,
       av_global: {

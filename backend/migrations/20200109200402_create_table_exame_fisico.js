@@ -4,8 +4,7 @@ exports.up = function(knex) {
         table.increments("codigo").primary()
         table.string("red_gord_subcut",1).notNull()
         table.string("perda_muscular",1).notNull()
-        table.string("edema",1).notNull()
-        table.string("ascite",1).notNull()                     
+        table.string("edema",1).notNull()                   
         
       })
 };

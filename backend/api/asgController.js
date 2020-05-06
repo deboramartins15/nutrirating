@@ -13,35 +13,29 @@ module.exports = app => {
         mudanca_peso: req.body.peso.mudanca_peso
       },
       ingestao_alimentar: {
-        sem_mudanca: req.body.ingestao_alimentar.sem_mudanca,
         mudanca: req.body.ingestao_alimentar.mudanca,
         tempo_mudanca: req.body.ingestao_alimentar.tempo_mudanca,
         tipo_dieta: req.body.ingestao_alimentar.tipo_dieta
       },
       sint_gastroint: {
-        nenhum: req.body.sint_gastroint.nenhum,
-        nausea: req.body.sint_gastroint.nausea,
-        vomito: req.body.sint_gastroint.vomito,
-        diarreia: req.body.sint_gastroint.diarreia,
-        anorexia: req.body.sint_gastroint.anorexia,
+        sintoma: req.body.sint_gastroint.sintoma,
+        frequencia: req.body.sint_gastroint.frequencia,
         duracao: req.body.sint_gastroint.duracao
       },
-      capac_func: {
-        sem_alteracao: req.body.capac_func.sem_alteracao,
-        alteracao: req.body.capac_func.alteracao,
-        tempo_alteracao: req.body.capac_func.tempo_alteracao,
+      capac_func: {        
+        alteracao: req.body.capac_func.alteracao,        
         duracao: req.body.capac_func.duracao
       },
       doenc_comorb: {
         diag_principal: req.body.doenc_comorb.diag_principal,
+        comorbidades: req.body.doenc_comorb.comorbidades,
         requerimento: req.body.doenc_comorb.requerimento,
         stress_metabol: req.body.doenc_comorb.stress_metabol
       },
       exame_fisico: {
         red_gord_subcut: req.body.exame_fisico.red_gord_subcut,
         perda_muscular: req.body.exame_fisico.perda_muscular,
-        edema: req.body.exame_fisico.edema,
-        ascite: req.body.exame_fisico.ascite
+        edema: req.body.exame_fisico.edema
       }
     };
 
@@ -64,57 +58,51 @@ module.exports = app => {
     };
 
     const insereIA = IA => {
-      if (
-        IA.sem_mudanca == "" ||
+      if (        
         IA.mudanca == "" ||
         IA.tempo_mudanca == "" ||
         IA.tipo_dieta == ""
       )
         return false;
 
-      const { sem_mudanca, mudanca, tempo_mudanca, tipo_dieta } = IA;
+      const { mudanca, tempo_mudanca, tipo_dieta } = IA;
 
       app
         .db("ingestao_alimentar")
-        .insert({ sem_mudanca, mudanca, tempo_mudanca, tipo_dieta });
+        .insert({ mudanca, tempo_mudanca, tipo_dieta });
 
       return true;
     };
 
     const insereSG = SG => {
       if (
-        SG.nenhum == "" ||
-        SG.nausea == "" ||
-        SG.vomito == "" ||
-        SG.diarreia == "" ||
-        SG.anorexia == "" ||
+        SG.sintoma == "" ||
+        SG.frequencia == "" ||
         SG.duracao === ""
       )
         return false;
 
-      const { nenhum, nausea, vomito, diarreia, anorexia, duracao } = SG;
+      const { sintoma, frequencia, duracao } = SG;
 
       app
         .db("sintomas_gastroint")
-        .insert({ nenhum, nausea, vomito, diarreia, anorexia, duracao });
+        .insert({ sintoma, frequencia, duracao});
 
       return true;
     };
 
     const insereCF = CF => {
-      if (
-        CF.sem_alteracao == "" ||
-        CF.alteracao == "" ||
-        CF.tempo_alteracao == "" ||
+      if (        
+        CF.alteracao == "" ||        
         CF.duracao === ""
       )
         return false;
 
-      const { sem_alteracao, alteracao, tempo_alteracao, duracao } = CF;
+      const { alteracao, duracao } = CF;
 
       app
         .db("cap_funcional")
-        .insert({ sem_alteracao, alteracao, tempo_alteracao, duracao });
+        .insert({  alteracao, duracao });
 
       return true;
     };
@@ -123,15 +111,16 @@ module.exports = app => {
       if (
         DC.diag_principal == "" ||
         DC.requerimento == "" ||
+        DC.comorbidades == "" ||
         DC.stress_metabol == ""
       )
         return false;
 
-      const { diag_principal, requerimento, stress_metabol } = DC;
+      const { diag_principal, requerimento, comorbidades, stress_metabol } = DC;
 
       app
         .db("doencas_comorbidades")
-        .insert({ diag_principal, requerimento, stress_metabol });
+        .insert({ diag_principal, requerimento, comorbidades, stress_metabol });
 
       return true;
     };
@@ -140,16 +129,15 @@ module.exports = app => {
       if (
         EF.red_gord_subcut == "" ||
         EF.perda_muscular == "" ||
-        EF.edema == "" ||
-        EF.ascite == ""
+        EF.edema == ""
       )
         return false;
 
-      const { red_gord_subcut, perda_muscular, edema, ascite } = EF;
+      const { red_gord_subcut, perda_muscular, edema } = EF;
 
       app
         .db("exame_fisico")
-        .insert({ red_gord_subcut, perda_muscular, edema, ascite });
+        .insert({ red_gord_subcut, perda_muscular, edema });
 
       return true;
     };

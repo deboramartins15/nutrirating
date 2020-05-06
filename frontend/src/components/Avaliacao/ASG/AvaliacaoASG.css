@@ -1,0 +1,152 @@
+.container-asg {
+  width: 80%;
+  height: 90vh;
+  background: #fff;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 0 20vh;
+
+  border-radius: 8px;
+  box-shadow: 10px 10px 8px rgba(250, 250, 250, 0.2);
+}
+
+.msgs-asg {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-asg {
+  width: 95%;
+  height: 8%;
+  display: flex;
+  justify-content: flex-start;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.header-asg span {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 15px;
+  font-size: 1.2rem;
+
+  color: rgba(0, 0, 0, 0.4);
+}
+.header-etapa {
+  width: 95%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 5px;
+}
+
+.header-etapa span {
+  font-size: 1.5em;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.pac-asg {
+  width: 300px;
+}
+
+.container-asg {
+  width: 80%;
+  height: auto;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 7vh 20vh;
+  border-radius: 8px;
+  box-shadow: 10px 10px 8px rgba(250, 250, 250, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.container-form-asg {
+  width: 95%;
+  height: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 10px 10px 8px rgba(250, 250, 250, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 2vh 0;
+  border-radius: 8px;
+}
+
+.form-asg-step-label {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 15px;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.form-group-asg {
+  height: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.asg-form {
+  width: 95%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  border-radius: 8px;
+}
+.form-control,
+.asg-form-row {
+  box-sizing: border-box;
+  margin: 0px 10px 8px 0;
+}
+
+.form-asg-label {
+  margin: 10px 10px 0 5px;
+}
+
+.btn-result-asg {
+  width: 100%;
+}
+
+@media Screen and (max-width: 768px) {
+  .container-asg,.container-form-asg {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    border: 0;
+  }
+  
+  .header-asg {
+    margin-top: 20px;
+}
+  .header-etapa span {
+    font-size: 1.2em;
+  }
+
+  .asg-form-row {
+    display: block;
+  }
+
+  .pac-asg {
+    width: 250px;
+  }
+}
+
+@media Screen and (max-width: 320px) {
+  .pac-asg {
+    width: 200px;
+  }
+}

@@ -7,7 +7,7 @@ import "./Home.css";
 import MaterialIcon from "material-icons-react";
 
 function Home(props) {
-  const profissional = useSelector(state => state.Login.profissional);
+  const profissional = useSelector((state) => state.Login.profissional);
 
   function menuToggle() {
     const aside = document.querySelector(".mainAside");
@@ -38,11 +38,7 @@ function Home(props) {
             </span>
           </div>
         </header>
-        <article className="mainContent">
-          <div className="maincontent">
-            <h1>Conteudo </h1>
-          </div>
-        </article>
+        <article className="mainContent"></article>
         <aside className="mainAside">
           <div className="menu-header">
             <MaterialIcon icon="account_circle" color="#FFF" size="medium" />
@@ -71,13 +67,19 @@ function Home(props) {
               <div className="menu-item">
                 <MaterialIcon icon="keyboard_arrow_right" color="#FFF" />
                 <li>
-                {" "}<Link to={"/avaliacao/asg"} className="menu-item-text">Subjetiva Global</Link>{" "}
+                  {" "}
+                  <Link to={"/avaliacao/asg"} className="menu-item-text">
+                    Subjetiva Global
+                  </Link>{" "}
                 </li>
               </div>
               <div className="menu-item">
                 <MaterialIcon icon="keyboard_arrow_right" color="#FFF" />
                 <li>
-                {" "}<Link to={"/avaliacao/man"} className="menu-item-text">Mini Avaliação</Link>{" "}
+                  {" "}
+                  <Link to={"/avaliacao/man"} className="menu-item-text">
+                    Mini Avaliação
+                  </Link>{" "}
                 </li>
               </div>
             </Collapse>

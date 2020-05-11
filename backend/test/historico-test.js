@@ -11,8 +11,8 @@ let token = "";
 describe("Histórico de Avaliação", () => {
   beforeEach("Autenticação", function(done) {
     const profissional = {
-      email: "profissional_test6.646757917205573@gmail.com",
-      senha: "1234de78"
+      email: "debora2@gmail.com",
+      senha: "12345678"
     };
 
     chai
@@ -57,22 +57,22 @@ describe("Histórico de Avaliação", () => {
       });
   });
 
-  it("Visualizar avaliação específica do paciente", done => {
-    const avaliacao = {
-      tipo: "MAN",
-      cod_pac: 4,
-      cod_av: 1
-    };
+  // it("Visualizar avaliação específica do paciente", done => {
+  //   const avaliacao = {
+  //     tipo: "MAN",
+  //     cod_pac: 4,
+  //     cod_av: 1
+  //   };
 
-    chai
-      .request(URL_BASE)
-      .get(
-        `/historico/${avaliacao.cod_pac}/${avaliacao.cod_av}/${avaliacao.tipo}`
-      )
-      .set("Authorization", "Bearer " + token)
-      .end((err, res) => {
-        res.body.should.be.an("object").that.is.not.empty;
-        done();
-      });
-  });
+  //   chai
+  //     .request(URL_BASE)
+  //     .get(
+  //       `/historico/${avaliacao.cod_pac}/${avaliacao.cod_av}/${avaliacao.tipo}`
+  //     )
+  //     .set("Authorization", "Bearer " + token)
+  //     .end((err, res) => {
+  //       res.body.should.be.an("object").that.is.not.empty;
+  //       done();
+  //     });
+  // });
 });

@@ -11,8 +11,8 @@ let token = "";
 describe("Avaliação do tipo ASG", () => {
   beforeEach("Autenticação", function(done) {
     const profissional = {
-      email: "profissional_test6.646757917205573@gmail.com",
-      senha: "1234de78"
+      email: "debora2@gmail.com",
+      senha: "12345678"
     };
 
     chai

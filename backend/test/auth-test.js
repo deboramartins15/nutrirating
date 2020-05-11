@@ -12,8 +12,8 @@ const URL_BASE = "http://localhost:3001";
 describe("Login c/ profissional", () => {
   it("Logar com profissional cadastrado", done => {
     const profissional = {
-      email: "profissional_test6.646757917205573@gmail.com",
-      senha: "1234de78"
+      email: "debora2@gmail.com",
+      senha: "12345678"
     };
 
     chai
@@ -79,20 +79,20 @@ describe("Login c/ profissional", () => {
       });
   });
 
-  it("Usuário esqueceu os dados com email válido", done => {
-    const profissional = {
-      email: "profissional_test@gmail.com"
-    };
+  // it("Usuário esqueceu os dados com email válido", done => {
+  //   const profissional = {
+  //     email: "profissional_test@gmail.com"
+  //   };
 
-    chai
-      .request(URL_BASE)
-      .post("/forgot-pass")
-      .send(profissional)
-      .end((err, res) => {
-        res.should.have.status(201);
-        done();
-      });
-  });
+  //   chai
+  //     .request(URL_BASE)
+  //     .post("/forgot-pass")
+  //     .send(profissional)
+  //     .end((err, res) => {
+  //       res.should.have.status(201);
+  //       done();
+  //     });
+  // });
 
   it("Usuário esqueceu os dados com email inválido", done => {
     const profissional = {

@@ -14,13 +14,8 @@ describe("Sign up profissional", () => {
       nome: "Profissional Test",
       email:
         "profissional_test" + Math.floor(Math.random() * 10000) + "@gmail.com",
-      dt_nasc: "1998-03-15",
       senha: "1234de78",
-      conf_senha: "1234de78",
-      sexo: "F",
-      telefone: "999999999",
-      conselho: "CRM",
-      crm_crn: "999999999999"
+      confirmacao_senha: "1234de78",
     };
 
     chai
@@ -39,7 +34,7 @@ describe("Sign up profissional", () => {
       email: "",
       dt_nasc: "1998-03-15",
       senha: "",
-      conf_senha: "",
+      confirmacao_senha: "",
       sexo: "F",
       telefone: "999999999",
       conselho: "CRM",
@@ -63,13 +58,8 @@ describe("Sign up profissional", () => {
     const profissional = {
       nome: "Profissional Test",
       email: "profissional_test@gmail.com",
-      dt_nasc: "1998-03-15",
       senha: "1234de78",
-      conf_senha: "1234de78",
-      sexo: "F",
-      telefone: "999999999",
-      conselho: "CRM",
-      crm_crn: "999999999999"
+      confirmacao_senha: "1234de78"
     };
 
     chai
@@ -87,13 +77,8 @@ describe("Sign up profissional", () => {
     const profissional = {
       nome: "Profissional Test",
       email: "profissional_test@gmail.com",
-      dt_nasc: "1998-03-15",
       senha: "1234de7",
-      conf_senha: "1234de78",
-      sexo: "F",
-      telefone: "999999999",
-      conselho: "CRM",
-      crm_crn: "999999999999"
+      confirmacao_senha: "1234de78"
     };
 
     chai
@@ -115,11 +100,7 @@ describe("Sign up profissional", () => {
       email: "profissional_test@gmail.com",
       dt_nasc: "1998-03-15",
       senha: "1234de789",
-      conf_senha: "1234de78",
-      sexo: "F",
-      telefone: "999999999",
-      conselho: "CRM",
-      crm_crn: "999999999999"
+      confirmacao_senha: "1234de78"
     };
 
     chai
@@ -139,8 +120,8 @@ describe("Sign up profissional", () => {
 describe("Update Profissional", () => {
   beforeEach("Autenticação", function(done) {
     const profissional = {
-      email: "profissional_test6.646757917205573@gmail.com",
-      senha: "1234de78"
+      email: "debora2@gmail.com",
+      senha: "12345678"
     };
 
     chai
@@ -155,7 +136,7 @@ describe("Update Profissional", () => {
 
   it("Alteração de profissional com dados válidos", done => {
     const profissional = {
-      id: 3,
+      id: 4,
       nome: "Profissional Teste",
       email:
         "profissional_test_upt" +
@@ -163,7 +144,7 @@ describe("Update Profissional", () => {
         "@gmail.com",
       dt_nasc: "1998-03-15",
       senha: "1234de78",
-      conf_senha: "1234de78",
+      confirmacao_senha: "1234de78",
       sexo: "F",
       telefone: "999999999",
       conselho: "CRM",
@@ -186,15 +167,11 @@ describe("Update Profissional", () => {
 
   it("Alteração de profissional com dados obrigatórios em branco", done => {
     const profissional = {
-      id: 3,
-      nome: "",
-      email:
-        "profissional_test_upt" +
-        Math.floor(Math.random() * 10000) +
-        "@gmail.com",
+      id: 4,
+      email:"",
       dt_nasc: "1998-03-15",
       senha: "1234de78",
-      conf_senha: "1234de78",
+      confirmacao_senha: "1234de78",
       sexo: "F",
       telefone: "999999999",
       conselho: "CRM",
@@ -217,7 +194,7 @@ describe("Update Profissional", () => {
 
   it("Alteração de profissional com senha inválida", done => {
     const profissional = {
-      id: 3,
+      id: 4,
       nome: "Profissional Teste",
       email:
         "profissional_test_upt" +
@@ -225,7 +202,7 @@ describe("Update Profissional", () => {
         "@gmail.com",
       dt_nasc: "1998-03-15",
       senha: "1234de7",
-      conf_senha: "1234de78",
+      confirmacao_senha: "1234de78",
       sexo: "F",
       telefone: "999999999",
       conselho: "CRM",
@@ -248,7 +225,7 @@ describe("Update Profissional", () => {
 
   it("Alteração de profissional com senha e confirmação de senha diferentes", done => {
     const profissional = {
-      id: 3,
+      id: 4,
       nome: "Profissional Teste",
       email:
         "profissional_test_upt" +
@@ -256,7 +233,7 @@ describe("Update Profissional", () => {
         "@gmail.com",
       dt_nasc: "1998-03-15",
       senha: "1234de789",
-      conf_senha: "1234de78",
+      confirmacao_senha: "1234de78",
       sexo: "F",
       telefone: "999999999",
       conselho: "CRM",
@@ -281,8 +258,8 @@ describe("Update Profissional", () => {
 describe("Delete profissional", () => {
   beforeEach("Autenticação", function(done) {
     const profissional = {
-      email: "profissional_test6.646757917205573@gmail.com",
-      senha: "1234de78"
+      email: "debora2@gmail.com",
+      senha: "12345678"
     };
 
     chai

@@ -58,23 +58,23 @@ function Login(props) {
 
   return (
     <div className="container-login">
+    {!!error && (
+      <Alert
+        className="above msg-login"
+        dismissible
+        variant="danger"
+        onClose={() => setError("")}
+      >
+        <span>{error}</span>
+      </Alert>
+    )}
       <div className="banner-login">
         <img src={bg} alt="bg" />
       </div>
       <div className="header-login above">
         <img src={logo} alt="logo" />
       </div>
-      <div className="content-login above">
-        {!!error && (
-          <Alert
-            className="above"
-            dismissible
-            variant="danger"
-            onClose={() => setError("")}
-          >
-            <span>{error}</span>
-          </Alert>
-        )}
+      <div className="content-login above">        
         <div className="form-login above">
           <span className="title-login">Já possui conta? Entre já</span>
           <input

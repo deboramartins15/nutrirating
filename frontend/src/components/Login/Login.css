@@ -23,6 +23,10 @@ body {
   background-color: #424242;
 }
 
+.msg-login{
+  margin-left: 40%;
+}
+
 .banner-login {
   width: 100%;
   height: 100%;
